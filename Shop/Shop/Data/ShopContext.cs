@@ -1,10 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shop.Models.Products;
 using Shop.Models.User;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Shop.Data
 {
