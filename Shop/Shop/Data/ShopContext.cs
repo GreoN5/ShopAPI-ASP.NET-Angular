@@ -20,7 +20,6 @@ namespace Shop.Data
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
 			builder.Entity<User>().Property(u => u.Username).ValueGeneratedNever();
-
 			builder.Entity<BankAccount>().Property(ba => ba.BankAccountNumber).ValueGeneratedNever();
 		}
 	}

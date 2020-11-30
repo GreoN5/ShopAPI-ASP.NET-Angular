@@ -10,6 +10,7 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Shop.Data;
 using Shop.Models.User;
+using Shop.Repositories;
 using System;
 using System.Text;
 
@@ -65,6 +66,8 @@ namespace Shop
 			});
 
 			services.AddDbContext<ShopContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+			services.AddScoped<UserRepository>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
