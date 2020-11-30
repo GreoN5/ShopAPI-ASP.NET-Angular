@@ -8,11 +8,12 @@ namespace Shop.ViewModels
 		public string Username { get; set; }
 
 		[Required(ErrorMessage = "Password is required!")]
-		[RegularExpression("^[a-zA-Z0-9]{6,}+$", 
-			ErrorMessage = "The password should be at least 6 symbols, containing lowercase letter(s), uppercase letter(s) and digits!")]
+		[RegularExpression(@"(?=^[^\s]{6,}$)(?=.*\d)(?=.*[a-zA-Z])", 
+			ErrorMessage = "The password should be at least 6 symbols, containing lowercase letter(s), uppercase letter(s) and digits without spaces!")]
 		public string Password { get; set; }
 
 		[Required(ErrorMessage = "Email is required!")]
+		[EmailAddress]
 		public string EmailAddress { get; set; }
 
 		public string Address { get; set; }
@@ -23,7 +24,7 @@ namespace Shop.ViewModels
 		public string PhoneNumber { get; set; }
 
 		[Required(ErrorMessage = "Bank account number is required!")]
-		[RegularExpression(@"(^BG)([0-9]{2})([A-Z]{4})([0-9]{14}*$)", 
+		[RegularExpression(@"(^BG)([0-9]{2})([A-Z]{4})([0-9]{14}$)", 
 			ErrorMessage = "Bank account number is not valid!")]
 		public string BankAccountNumber { get; set; }
 	}
