@@ -12,6 +12,6 @@ namespace Shop.Models.User
 		[Key]
 		public int ID { get; set; }
 
-		public List<Product> Products { get; set; }
+		public List<Product> Products { get; set; } = new List<Product>();
 	}
 }
