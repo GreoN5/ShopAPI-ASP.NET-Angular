@@ -34,7 +34,7 @@ namespace Shop.Repositories
 				EmailAddress = userRegistration.EmailAddress,
 				Address = userRegistration.Address,
 				PhoneNumber = userRegistration.PhoneNumber,
-				Role = UserRole.User,
+				Role = "User",
 				BankAccount = new BankAccount()
 				{
 					BankAccountNumber = userRegistration.BankAccountNumber,

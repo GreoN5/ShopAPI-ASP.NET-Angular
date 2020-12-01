@@ -54,8 +54,8 @@ namespace Shop
 
 			services.AddAuthorization(config => 
 			{
-				config.AddPolicy("UserRequirement", policy => policy.RequireAuthenticatedUser().RequireRole(UserRole.User.ToString()).Build());
-				config.AddPolicy("AdminRequirement", policy => policy.RequireAuthenticatedUser().RequireRole(UserRole.Admin.ToString()).Build());
+				config.AddPolicy("UserRequirement", policy => policy.RequireAuthenticatedUser().RequireRole("User").Build());
+				config.AddPolicy("AdminRequirement", policy => policy.RequireAuthenticatedUser().RequireRole("Admin").Build());
 			});
 
 			services.AddCors();
@@ -68,6 +68,7 @@ namespace Shop
 			services.AddDbContext<ShopContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 			services.AddScoped<UserRepository>();
+			services.AddScoped<ShopRepository>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

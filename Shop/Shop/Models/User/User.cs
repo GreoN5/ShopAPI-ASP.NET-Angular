@@ -22,7 +22,7 @@ namespace Shop.Models.User
 		public string PhoneNumber { get; set; }
 
 		[Column(TypeName = "varchar(10)")]
-		public UserRole Role { get; set; }
+		public string Role { get; set; }
 
 		public BankAccount BankAccount { get; set; }
 

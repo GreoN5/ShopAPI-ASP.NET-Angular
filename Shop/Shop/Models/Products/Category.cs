@@ -11,25 +11,19 @@ namespace Shop.Models.Products
 		[Description("Meat")]
 		Meat = 1,
 
-		[Description("Alcoholic beverage")]
-		AlcoholicBeverage = 2,
-
-		[Description("Carbonated drink")]
-		CarbonatedDrink = 3,
-
-		[Description("Non-carbonated drink")]
-		NonCarbonatedDrink = 4,
+		[Description("Drinks")]
+		Drinks = 2,
 
 		[Description("Pizza")]
-		Pizza = 5,
+		Pizza = 3,
 
 		[Description("Salad")]
-		Salad = 6,
+		Salad = 4,
 
 		[Description("Sauce")]
-		Sauces = 7,
+		Sauces = 5,
 
 		[Description("Dessert")]
-		Dessert = 8,
+		Dessert = 6,
 	}
 }
