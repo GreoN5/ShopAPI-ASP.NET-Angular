@@ -29,10 +29,19 @@ namespace Shop.Controllers
 		{
 			User user = _userRepository.Registration(userRegistration);
 
-			if (user == null)
+			if (user.Username == null)
 			{
-				return StatusCode(409, $"Already existing user with \"{userRegistration.Username}\" username" +
-					$" or \"{userRegistration.EmailAddress}\" email or \"{userRegistration.BankAccountNumber}\" bank account number!");
+				return StatusCode(409, $"Already existing user with username \"{userRegistration.Username}\"!");
+			}
+
+			if (user.EmailAddress == null)
+			{
+				return StatusCode(409, $"Already existing user with email \"{userRegistration.EmailAddress}\"!");
+			}
+
+			if (user.BankAccount == null)
+			{
+				return StatusCode(409, $"Already existing user with bank account \"{userRegistration.BankAccountNumber}\"!");
 			}
 
 			return Ok(user);

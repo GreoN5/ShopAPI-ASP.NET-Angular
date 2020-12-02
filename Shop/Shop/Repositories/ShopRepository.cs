@@ -104,6 +104,57 @@ namespace Shop.Repositories
 			return true;
 		}
 
+		public bool ChangeQuantityOfProduct(string username, string productName, int quantity)
+		{
+			User user = GetUserByUsername(username);
+			Product product = GetProductByProductName(productName);
+
+			if (user == null || product == null)
+			{
+				return false;
+			}
+
+			if (user.Cart.Products.Contains(product))
+			{
+				product.Quantity = quantity;
+				return true;
+			}
+
+			return false;
+		}
+
+		public decimal GetFinalPrice(string username)
+		{
+			User user = GetUserByUsername(username);
+
+			if (user == null)
+			{
+				return -1;
+			}
+
+			for (int i = 0; i < user.Cart.Products.Count; i++)
+			{
+				user.Cart.FinalPrice += user.Cart.Products[i].Price;
+			}
+
+			return user.Cart.FinalPrice;
+		}
+
+		public bool ClearCart(string username)
+		{
+			User user = GetUserByUsername(username);
+
+			if (user == null)
+			{
+				return false;
+			}
+
+			user.Cart.Products.Clear();
+			user.Cart.FinalPrice = 0;
+
+			return true;
+		}
+
 		private User GetUserByUsername(string username)
 		{
 			return _shopContext.Users.Find(username);

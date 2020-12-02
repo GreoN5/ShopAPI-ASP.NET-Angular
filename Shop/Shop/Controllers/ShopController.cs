@@ -58,9 +58,8 @@ namespace Shop.Controllers
 			return NotFound("Invalid category!");
 		}
 
-		[Route("Cart/{username}")]
+		[Route("{username}/Cart")]
 		[Authorize(Roles = "User")]
-		[Authorize(Roles = "Admin")]
 		[HttpGet]
 		public IActionResult ShowProductInCart(string username)
 		{
@@ -79,9 +78,23 @@ namespace Shop.Controllers
 			return Unauthorized("You must have an account in order to access your cart!");
 		}
 
-		[Route("Cart/{username}/AddProduct/{productName}")]
+		[Route("{username}/Cart/FinalPrice")]
 		[Authorize(Roles = "User")]
-		[Authorize(Roles = "Admin")]
+		[HttpGet]
+		public IActionResult GetFinalPriceOfCart(string username)
+		{
+			decimal finalPrice = _shopRepository.GetFinalPrice(username);
+
+			if (finalPrice != -1)
+			{
+				return Ok(finalPrice);
+			}
+
+			return NotFound("User not found!");
+		}
+
+		[Route("{username}/Cart/AddProduct/{productName}")]
+		[Authorize(Roles = "User")]
 		[HttpPost]
 		public IActionResult AddProductToCart(string username, string productName)
 		{
@@ -93,15 +106,40 @@ namespace Shop.Controllers
 			return NotFound();
 		}
 
-		[Route("Cart/{username}/RemoveProduct/{productName}")]
+		[Route("{username}/Cart/{productName}/ChangeQuantity")]
 		[Authorize(Roles = "User")]
-		[Authorize(Roles = "Admin")]
+		[HttpPut]
+		public IActionResult ChangeQuantityOfProduct(string username, string productName, [FromBody] int quantity)
+		{
+			if (_shopRepository.ChangeQuantityOfProduct(username, productName, quantity))
+			{
+				return Ok($"Change quatity of {productName} to {quantity}!");
+			}
+
+			return NotFound();
+		}
+
+		[Route("{username}/Cart/RemoveProduct/{productName}")]
+		[Authorize(Roles = "User")]
 		[HttpDelete]
 		public IActionResult RemoveProductFromCart(string username, string productName)
 		{
 			if (_shopRepository.RemoveProductFromCart(username, productName))
 			{
 				return Ok($"Product {productName} removed successfuly from your cart!");
+			}
+
+			return NotFound();
+		}
+
+		[Route("{username}/Cart")]
+		[Authorize(Roles = "User")]
+		[HttpDelete]
+		public IActionResult ClearCart(string username)
+		{
+			if (_shopRepository.ClearCart(username))
+			{
+				return Ok("Your cart is successfully cleared!");
 			}
 
 			return NotFound();

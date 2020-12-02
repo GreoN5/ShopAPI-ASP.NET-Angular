@@ -69,6 +69,7 @@ namespace Shop
 
 			services.AddScoped<UserRepository>();
 			services.AddScoped<ShopRepository>();
+			services.AddScoped<AdminRepository>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

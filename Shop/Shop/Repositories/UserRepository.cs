@@ -27,6 +27,60 @@ namespace Shop.Repositories
 		{
 			List<User> users = _shopContext.Users.ToList();
 
+			if (CheckIfUsernameAlreadyExists(users, userRegistration.Username))
+			{
+				return new User()
+				{
+					Username = null,
+					Password = userRegistration.Password,
+					EmailAddress = userRegistration.EmailAddress,
+					Address = userRegistration.Address,
+					PhoneNumber = userRegistration.PhoneNumber,
+					Role = "User",
+					BankAccount = new BankAccount()
+					{
+						BankAccountNumber = userRegistration.BankAccountNumber,
+						BankAccountBalance = SetBankAccountBalance()
+					},
+					Cart = new Cart()
+				}; // returns the user with null username
+			}
+
+			if (CheckIfEmailAlreadyExists(users, userRegistration.EmailAddress))
+			{
+				return new User()
+				{
+					Username = userRegistration.Username,
+					Password = userRegistration.Password,
+					EmailAddress = null,
+					Address = userRegistration.Address,
+					PhoneNumber = userRegistration.PhoneNumber,
+					Role = "User",
+					BankAccount = new BankAccount()
+					{
+						BankAccountNumber = userRegistration.BankAccountNumber,
+						BankAccountBalance = SetBankAccountBalance()
+					},
+					Cart = new Cart()
+				}; // returns the user with null email address
+			}
+
+			if (CheckIfBankAccountNumberAlreadyExists(users, userRegistration.BankAccountNumber))
+			{
+				return new User()
+				{
+					Username = userRegistration.Username,
+					Password = userRegistration.Password,
+					EmailAddress = userRegistration.EmailAddress,
+					Address = userRegistration.Address,
+					PhoneNumber = userRegistration.PhoneNumber,
+					Role = "User",
+					BankAccount = null,
+					Cart = new Cart()
+				}; // returns the user with null back account
+			}
+
+			// if there are no matches for duplicated attributes of the user it will create a complete user and add it to the database 
 			User newUser = new User()
 			{
 				Username = userRegistration.Username,
@@ -42,13 +96,6 @@ namespace Shop.Repositories
 				},
 				Cart = new Cart()
 			};
-
-			if (CheckIfUsernameAlreadyExists(users, newUser.Username) || 
-				CheckIfEmailAlreadyExists(users, newUser.EmailAddress) || 
-				CheckIfBankAccountNumberAlreadyExists(users, newUser.BankAccount.BankAccountNumber))
-			{
-				return null;
-			}
 
 			_shopContext.Users.Add(newUser);
 			_shopContext.SaveChanges();

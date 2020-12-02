@@ -76,6 +76,9 @@ namespace Shop.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<decimal>("FinalPrice")
+                        .HasColumnType("decimal(6,2)");
+
                     b.HasKey("ID");
 
                     b.ToTable("Carts");
@@ -105,7 +108,6 @@ namespace Shop.Migrations
                         .HasColumnType("varchar(10)");
 
                     b.Property<string>("Role")
-                        .IsRequired()
                         .HasColumnType("varchar(10)");
 
                     b.HasKey("Username");

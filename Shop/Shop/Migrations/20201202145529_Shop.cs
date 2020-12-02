@@ -23,7 +23,8 @@ namespace Shop.Migrations
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FinalPrice = table.Column<decimal>(type: "decimal(6,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -64,7 +65,7 @@ namespace Shop.Migrations
                     EmailAddress = table.Column<string>(type: "varchar(250)", nullable: true),
                     Address = table.Column<string>(type: "varchar(500)", nullable: true),
                     PhoneNumber = table.Column<string>(type: "varchar(10)", nullable: true),
-                    Role = table.Column<string>(type: "varchar(10)", nullable: false),
+                    Role = table.Column<string>(type: "varchar(10)", nullable: true),
                     BankAccountNumber = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CartID = table.Column<int>(type: "int", nullable: true)
                 },
