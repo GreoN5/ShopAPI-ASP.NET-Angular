@@ -2,10 +2,8 @@
 using Shop.Models.Products;
 using Shop.Models.User;
 using Shop.ViewModels;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Shop.Repositories
 {
@@ -28,7 +26,7 @@ namespace Shop.Repositories
 			return _shopContext.Products.ToList();
 		}
 
-		public bool AddProduct(ProductVM product)
+		public bool CreateNewProduct(ProductVM product)
 		{
 			if (DoesProductExists(product.Name))
 			{
@@ -50,6 +48,26 @@ namespace Shop.Repositories
 			_shopContext.SaveChanges();
 
 			return true;
+		}
+
+		public bool ChangeQuantityOfProduct(string productName, int quantity)
+		{
+			Product product = GetProductByProductName(productName);
+
+			if (product != null)
+			{
+				if (quantity > 0)
+				{
+					product.Quantity = quantity;
+					SetProductStatus(product); // sets the new status because the quantity has been changed
+
+					_shopContext.SaveChanges();
+
+					return true;
+				}
+			}
+
+			return false;
 		}
 
 		public bool RemoveProduct(string productName)

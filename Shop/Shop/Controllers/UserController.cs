@@ -3,10 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Shop.Models.User;
 using Shop.Repositories;
 using Shop.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Shop.Controllers
 {
