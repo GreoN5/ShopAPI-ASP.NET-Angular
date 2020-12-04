@@ -20,7 +20,6 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
@@ -119,6 +118,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ShopUI"
+    }
+  },
+  "defaultProject": "ShopUI",
+  "cli": {
+    "analytics": "11ce9c09-b55d-4a79-b6f0-d81285c613d3"
+  }
 }
