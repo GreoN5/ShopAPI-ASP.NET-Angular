@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Shop.Data;
 using Shop.Models.User;
 using Shop.Repositories;
@@ -63,6 +64,7 @@ namespace Shop
 			services.AddMvc().AddNewtonsoftJson(options => 
 			{
 				options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+				options.SerializerSettings.Converters.Add(new StringEnumConverter());
 			});
 
 			services.AddDbContext<ShopContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

@@ -1,1 +1,14 @@
-<p>shop works!</p>
+<header>
+  <div class="logo">
+    <a href="/home"><img src="assets/images/logo.jpg" /></a>
+  </div>
+  <div class="nav-bar">
+    <li *ngFor="let data of shopService.productCategories">
+      <ul>
+        {{
+          data
+        }}
+      </ul>
+    </li>
+  </div>
+</header>

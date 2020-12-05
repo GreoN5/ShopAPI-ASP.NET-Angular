@@ -19,7 +19,6 @@ namespace Shop.Controllers
 		}
 
 		[Route("Products")]
-		[AllowAnonymous]
 		[HttpGet]
 		public IActionResult GetAllProducts()
 		{
@@ -27,7 +26,6 @@ namespace Shop.Controllers
 		}
 
 		[Route("ProductCategories")]
-		[AllowAnonymous]
 		[HttpGet]
 		public IActionResult GetAllProductCategories()
 		{
@@ -35,7 +33,6 @@ namespace Shop.Controllers
 		}
 
 		[Route("ProductsByCategory")]
-		[AllowAnonymous]
 		[HttpGet]
 		public IActionResult GetProductsByCategory(string category)
 		{
