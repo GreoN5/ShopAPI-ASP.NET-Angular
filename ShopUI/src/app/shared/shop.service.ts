@@ -12,6 +12,7 @@ export class ShopService {
 
   products = []
   productCategories = []
+  productByCategories = []
 
   getCategories():any {
     return this.http.get(this.ApiURL + '/Shop/ProductCategories')
@@ -19,5 +20,9 @@ export class ShopService {
 
   getProducts():any {
     return this.http.get(this.ApiURL + '/Shop/Products')
+  }
+
+  getProductByCategories(category):any {
+    return this.http.get(this.ApiURL + '/Shop/Products/' + category)
   }
 }

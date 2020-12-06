@@ -34,4 +34,14 @@ export class ShopComponent implements OnInit {
       }
     )
   }
+
+  showProductsByCategories(category) {
+    this.shopService.getProductByCategories(category).subscribe(
+      data => {
+        this.shopService.productByCategories = data
+      }, error => {
+        console.log(error)
+      }
+    )
+  }
 }

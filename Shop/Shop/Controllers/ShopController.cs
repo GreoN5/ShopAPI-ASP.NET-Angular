@@ -32,7 +32,7 @@ namespace Shop.Controllers
 			return Ok(_shopRepository.ShowAllProductCategories());
 		}
 
-		[Route("ProductsByCategory")]
+		[Route("Products/{category}")]
 		[HttpGet]
 		public IActionResult GetProductsByCategory(string category)
 		{

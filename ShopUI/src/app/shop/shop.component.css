@@ -1,0 +1,33 @@
+header {
+  display: flex;
+  width: 100%;
+}
+
+.logo {
+  order: 1;
+  flex: 0 0 20%;
+}
+
+.nav-bar {
+  order: 2;
+  flex: 0 0 60%;
+  text-align: center;
+}
+
+.nav-bar ul {
+  display: inline;
+  list-style-type: none;
+  font-size: 1.3em;
+  margin-top: 0;
+  padding-left: 10px;
+  padding-bottom: 0;
+}
+
+.nav-bar ul li {
+  display: inline-block;
+}
+
+.user-profile {
+  order: 3;
+  flex: 0 0 20%;
+}

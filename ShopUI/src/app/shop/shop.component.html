@@ -1,14 +1,13 @@
 <header>
   <div class="logo">
-    <a href="/home"><img src="assets/images/logo.jpg" /></a>
+    <a href="/home"><img src="assets/images/shop-logo-transperant-resized.png"/></a>
   </div>
   <div class="nav-bar">
-    <li *ngFor="let data of shopService.productCategories">
-      <ul>
-        {{
-          data
-        }}
-      </ul>
-    </li>
+    <ul *ngFor="let data of shopService.productCategories">
+      <li>{{data}}</li>
+    </ul>
+  </div>
+  <div class="user-profile">
+    
   </div>
 </header>
