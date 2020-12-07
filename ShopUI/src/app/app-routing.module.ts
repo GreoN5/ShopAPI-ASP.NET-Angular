@@ -4,7 +4,8 @@ import { ShopComponent } from './shop/shop.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: ShopComponent }
+  { path: 'home', component: ShopComponent },
+  { path: 'home/:category', component: ShopComponent }
 ];
 
 @NgModule({

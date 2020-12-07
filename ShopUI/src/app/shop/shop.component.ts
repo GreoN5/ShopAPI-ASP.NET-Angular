@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ShopService } from '../shared/shop.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { ShopService } from '../shared/shop.service';
 })
 export class ShopComponent implements OnInit {
 
-  constructor(public shopService: ShopService) { }
+  constructor(public shopService: ShopService, private router: Router) { }
 
   ngOnInit(): void {
     this.showCategories()
@@ -39,6 +40,7 @@ export class ShopComponent implements OnInit {
     this.shopService.getProductByCategories(category).subscribe(
       data => {
         this.shopService.productByCategories = data
+        this.router.navigateByUrl('/home/' + category)
       }, error => {
         console.log(error)
       }
