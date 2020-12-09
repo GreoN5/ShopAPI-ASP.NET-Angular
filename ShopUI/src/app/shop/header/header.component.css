@@ -1,0 +1,30 @@
+header {
+  position: relative;
+  margin-bottom: 8vh;
+}
+
+.logo {
+  max-width: 40vw;
+  height: auto;
+}
+
+.nav-bar {
+  position: absolute;
+  left: 30%;
+  bottom: 0;
+}
+
+.nav-bar ul {
+  display: inline;
+  list-style-type: none;
+  font-size: 1.3em;
+  margin-top: 0;
+  padding-left: 10px;
+  padding-bottom: 0;
+}
+
+.nav-bar ul li {
+  display: inline-block;
+  padding-right: 1em;
+  padding-left: 1em;
+}

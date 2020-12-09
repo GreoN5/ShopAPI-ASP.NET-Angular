@@ -9,6 +9,8 @@ import { LoginComponent } from './user/login/login.component';
 import { ShopComponent } from './shop/shop.component';
 import { CartComponent } from './user/cart/cart.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './shop/header/header.component';
+import { ProductsByCategoriesComponent } from './shop/products-by-categories/products-by-categories.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
     RegistrationComponent,
     LoginComponent,
     ShopComponent,
-    CartComponent
+    CartComponent,
+    HeaderComponent,
+    ProductsByCategoriesComponent
   ],
   imports: [
     BrowserModule,

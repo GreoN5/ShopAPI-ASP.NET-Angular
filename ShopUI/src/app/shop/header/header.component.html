@@ -1,0 +1,13 @@
+<header>
+  <div >
+    <a href="/home"><img class="logo" src="assets/images/shop-logo-transperant-resized.png"/></a>
+  </div>
+  <div class="nav-bar">
+    <ul *ngFor="let data of shopService.productCategories">
+      <li (click)="showProductsByCategory(data)">{{data}}</li>
+    </ul>
+  </div>
+  <div class="user-profile">
+    
+  </div>
+</header>
