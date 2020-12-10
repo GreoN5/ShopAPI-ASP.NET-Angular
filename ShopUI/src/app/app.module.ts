@@ -11,6 +11,7 @@ import { CartComponent } from './user/cart/cart.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './shop/header/header.component';
 import { ProductsByCategoriesComponent } from './shop/products-by-categories/products-by-categories.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { ProductsByCategoriesComponent } from './shop/products-by-categories/pro
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

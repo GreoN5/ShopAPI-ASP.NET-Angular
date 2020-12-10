@@ -1,1 +1,12 @@
-<p>registration works!</p>
+<main>
+    <div class="register-container">
+        <div class="form-wrapper">
+            <form [formGroup]="userService.registerModel" autocomplete="off" (ngSubmit)="onSubmit()">
+                <div>
+                    <label *ngIf="userService.registerModel.get('Username').touched &&
+                    userService.registerModel.get('Username').errors?.required">This field is required!</label>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>

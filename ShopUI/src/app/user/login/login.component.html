@@ -1,1 +1,24 @@
-<p>login works!</p>
+<main>
+    <div class="login-container">
+        <div class="form-wrapper">
+            <form #loginForm="ngForm" autocomplete="off" (submit)="onSubmit(loginForm)">
+                <div>
+                    <label for="username">Username</label>
+                    <input #Username="ngModel" name="Username" [(ngModel)]="loginModel.Username" 
+                    id="username" placeholder="Enter username" required />
+                </div>
+                <div>
+                    <label for="password">Password</label>
+                    <input #Password="ngModel" name="Password" [(ngModel)]="loginModel.Password"
+                    id="password" placeholder="Enter password" required />
+                </div>
+                <div>
+                    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+                </div>
+            </form>
+        </div>
+        <div>
+            <h4 routerLink="/home/registration" routerLinkActive="active">Don't have an account? Sign up here!</h4>
+        </div>
+    </div>
+</main>
