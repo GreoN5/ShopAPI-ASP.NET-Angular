@@ -11,9 +11,10 @@ export class RegistrationComponent implements OnInit {
   constructor(public userService: UserService) { }
 
   ngOnInit(): void {
+    this.userService.registerModel.reset()
   }
 
-  onSubmit() {
+  submit() {
     this.userService.register().subscribe(
       (response: any) => {
         this.userService.registerModel.reset()
@@ -21,5 +22,4 @@ export class RegistrationComponent implements OnInit {
         console.log(error)
       })
   }
-
 }

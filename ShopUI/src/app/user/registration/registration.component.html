@@ -1,12 +1,77 @@
 <main>
     <div class="register-container">
         <div class="form-wrapper">
-            <form [formGroup]="userService.registerModel" autocomplete="off" (ngSubmit)="onSubmit()">
+            <form [formGroup]="userService.registerModel" autocomplete="off" (ngSubmit)="submit()">
                 <div>
+                    <label for="username">Username: </label>
+                    <label class="required"></label>
+                    <input type="text" id="username" formControlName="Username" placeholder="Enter username" />
                     <label *ngIf="userService.registerModel.get('Username').touched &&
                     userService.registerModel.get('Username').errors?.required">This field is required!</label>
                 </div>
+                <div formGroupName="Passwords">
+                    <div>
+                        <label for="password">Password: </label>
+                        <label class="required"></label>
+                        <input type="password" id="password" formControlName="Password" placeholder="Enter password" />
+                        <label *ngIf="userService.registerModel.get('Passwords.Password').touched && 
+                        userService.registerModel.get('Passwords.Password').errors?.required">This field is required!</label>
+                        <label *ngIf="userService.registerModel.get('Passwords.Password').touched &&
+                        userService.registerModel.get('Passwords.Password').hasError('pattern')">
+                        Password should contain at least 6 symbols including lowercase and uppercase characters without space!</label>
+                    </div>
+                    <div>
+                        <label for="confirmPassword">Confirm password: </label>
+                        <label class="required"></label>
+                        <input type="password" id="confirmPassword" formControlName="ConfirmPassword" placeholder="Confirm password" />
+                        <label *ngIf="userService.registerModel.get('Passwords.ConfirmPassword').touched &&
+                        userService.registerModel.get('Passwords.ConfirmPassword').errors?.required">
+                        This field is required!</label>
+                        <label *ngIf="userService.registerModel.get('Passwords.ConfirmPassword').touched &&
+                        userService.registerModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">
+                        Passwords does not match!</label>
+                    </div>
+                </div>
+                <div>
+                    <label for="email">Email address: </label>
+                    <label class="required"></label>
+                    <input type="email" id="email" formControlName="EmailAddress" placeholder="Enter your email address" />
+                    <label *ngIf="userService.registerModel.get('EmailAddress').touched &&
+                    userService.registerModel.get('EmailAddress').errors?.required">This field is required!</label>
+                    <label *ngIf="userService.registerModel.get('EmailAddress').touched &&
+                    userService.registerModel.get('EmailAddress').hasError('patern')">Invalid Email address!</label>
+                </div>
+                <div>
+                    <label for="address">Address: </label>
+                    <input type="text" id="address" formControlName="Address" placeholder="Enter your address" />
+                </div>
+                <div>
+                    <label for="phoneNumber">Phone number: </label>
+                    <label class="required"></label>
+                    <input type="number" id="phoneNumber" formControlName="PhoneNumber" placeholder="Enter your phone number" />
+                    <label *ngIf="userService.registerModel.get('PhoneNumber').touched &&
+                    userService.registerModel.get('PhoneNumber').errors?.required">This field is required!</label>
+                    <label *ngIf="userService.registerModel.get('PhoneNumber').touched &&
+                    userService.registerModel.get('PhoneNumber').hasError('maxlength') &&
+                    userService.registerModel.get('PhoneNumber').hasError('minlength')">
+                    Phone number should consists of 10 digits</label>
+                </div>
+                <div>
+                    <label for="bankAccountNumber">Bank account number: </label>
+                    <label class="required"></label>
+                    <input type="text" id="bankAccountNumber" formControlName="BankAccountNumber" placeholder="Enter you bank account number" />
+                    <label *ngIf="userService.registerModel.get('BankAccountNumber').touched &&
+                    userService.registerModel.get('BankAccountNumber').errors?.required">This field is required!</label>
+                    <label *ngIf="userService.registerModel.get('BankAccountNumber').touched &&
+                    userService.registerModel.get('BankAccountNumber').hasError('pattern')">Invalid bank account number!</label>
+                </div>
+                <div>
+                    <button type="submit" [disabled]="userService.registerModel.invalid"></button>
+                </div>
             </form>
+        </div>
+        <div>
+            <h4 routerLink="/user/login" routerLinkActive="active">Already have an account? Sign in here!</h4>
         </div>
     </div>
 </main>

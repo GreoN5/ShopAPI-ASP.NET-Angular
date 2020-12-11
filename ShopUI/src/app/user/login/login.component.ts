@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onSubmit(loginForm: NgForm) {
+  submit(loginForm: NgForm) {
     this.userService.login(loginForm.value).subscribe(
       (response: any) => {
         localStorage.setItem('loggedUser', loginForm.value.Username)

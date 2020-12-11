@@ -1,7 +1,7 @@
 <main>
     <div class="login-container">
         <div class="form-wrapper">
-            <form #loginForm="ngForm" autocomplete="off" (submit)="onSubmit(loginForm)">
+            <form #loginForm="ngForm" autocomplete="off" (submit)="submit(loginForm)">
                 <div>
                     <label for="username">Username</label>
                     <input #Username="ngModel" name="Username" [(ngModel)]="loginModel.Username" 
@@ -18,7 +18,7 @@
             </form>
         </div>
         <div>
-            <h4 routerLink="/home/registration" routerLinkActive="active">Don't have an account? Sign up here!</h4>
+            <h4 routerLink="/user/registration" routerLinkActive="active">Don't have an account? Sign up here!</h4>
         </div>
     </div>
 </main>

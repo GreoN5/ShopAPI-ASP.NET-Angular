@@ -24,4 +24,10 @@ export class HeaderComponent implements OnInit {
       }
     )
   }
+
+  getLoggedUser() {
+    return localStorage.getItem('loggedUser')
+  }
+
+  isLoggedUser = this.getLoggedUser() ? 'Cart' : 'Login'
 }

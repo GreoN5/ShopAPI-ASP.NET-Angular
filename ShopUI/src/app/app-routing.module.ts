@@ -10,9 +10,9 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: ShopComponent },
   { path: 'home/:category', component: ProductsByCategoriesComponent },
-  { path: 'home/registration', component: RegistrationComponent },
-  { path: 'home/login', component: LoginComponent },
-  { path: 'home/cart', component: CartComponent }
+  { path: 'user/registration', component: RegistrationComponent },
+  { path: 'user/login', component: LoginComponent },
+  { path: 'user/cart', component: CartComponent }
 ];
 
 @NgModule({
