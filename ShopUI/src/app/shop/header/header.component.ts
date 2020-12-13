@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ShopService } from 'src/app/shared/shop.service';
+import { UserService } from 'src/app/shared/user.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ import { ShopService } from 'src/app/shared/shop.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public shopService: ShopService, private router: Router) { }
+  constructor(public shopService: ShopService, public userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -25,9 +26,29 @@ export class HeaderComponent implements OnInit {
     )
   }
 
+  navigateToRegistrationForm() {
+    this.router.navigateByUrl('/user/registration')
+  }
+
+  navigateToLoginForm() {
+    this.router.navigateByUrl('/user/login')
+  }
+
+  navigateToCart() {
+    this.router.navigateByUrl('/user/cart')
+  }
+
   getLoggedUser() {
     return localStorage.getItem('loggedUser')
   }
 
-  isLoggedUser = this.getLoggedUser() ? 'Cart' : 'Login'
+  isLoggedUser() {
+    let user = this.getLoggedUser()
+
+    if (user === null || user === '') {
+      return false
+    }
+
+    return true
+  }
 }

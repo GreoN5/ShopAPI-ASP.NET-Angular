@@ -1,6 +1,7 @@
 <main>
     <div class="register-container">
         <div class="form-wrapper">
+            <span class="error" (ng-show)="getError()"></span>
             <form [formGroup]="userService.registerModel" autocomplete="off" (ngSubmit)="submit()">
                 <div>
                     <label for="username">Username: </label>

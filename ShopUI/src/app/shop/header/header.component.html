@@ -8,6 +8,12 @@
     </ul>
   </div>
   <div class="user-profile">
-    
+    <ul *ngIf="!isLoggedUser()">
+      <li (click)="navigateToLoginForm()">Login</li>
+      <li (clicl)="navigateToRegistrationForm()">Sign up</li>
+    </ul>
+    <ul *ngIf="isLoggedUser">
+      <li (click)="navigateToCart()">My cart</li>
+    </ul>
   </div>
 </header>

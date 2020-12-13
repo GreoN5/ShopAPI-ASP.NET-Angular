@@ -32,12 +32,12 @@ namespace Shop.Controllers
 
 			if (user.EmailAddress == null)
 			{
-				return StatusCode(409, $"Already existing user with email \"{userRegistration.EmailAddress}\"!");
+				return StatusCode(410, $"Already existing user with email \"{userRegistration.EmailAddress}\"!");
 			}
 
 			if (user.BankAccount == null)
 			{
-				return StatusCode(409, $"Already existing user with bank account \"{userRegistration.BankAccountNumber}\"!");
+				return StatusCode(411, $"Already existing user with bank account \"{userRegistration.BankAccountNumber}\"!");
 			}
 
 			return Ok(user);

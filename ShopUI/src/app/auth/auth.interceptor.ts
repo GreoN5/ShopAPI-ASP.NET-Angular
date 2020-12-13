@@ -22,6 +22,8 @@ export class AuthInterceptor implements HttpInterceptor {
                         if (error.status == 401) {
                             localStorage.clear()
                             this.router.navigateByUrl('/home')
+                        } else {
+                            localStorage.setItem('error', error)
                         }
                     }
                 )
