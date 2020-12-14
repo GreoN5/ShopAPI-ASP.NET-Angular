@@ -28,3 +28,22 @@ header {
   padding-right: 1em;
   padding-left: 1em;
 }
+
+.user-profile {
+  position: absolute;
+  bottom: 0;
+  right: 10%;
+}
+
+.user-profile ul {
+  display: inline;
+  list-style-type: none;
+  font-size: 1.3em;
+  padding: 0;
+}
+
+.user-profile ul li {
+  display: inline-block;
+  padding-left: 1em;
+  padding-right: 1em;
+}

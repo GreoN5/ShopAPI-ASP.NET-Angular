@@ -1,24 +1,25 @@
+<app-header></app-header>
 <main>
     <div class="login-container">
         <div class="form-wrapper">
             <form #loginForm="ngForm" autocomplete="off" (submit)="submit(loginForm)">
+                <label id="username-label">Username: </label>
                 <div>
-                    <label for="username">Username</label>
                     <input #Username="ngModel" name="Username" [(ngModel)]="loginModel.Username" 
-                    id="username" placeholder="Enter username" required />
+                    id="text-box" placeholder="Enter username" required />
                 </div>
+                <label id="password-label">Password: </label>
                 <div>
-                    <label for="password">Password</label>
                     <input #Password="ngModel" name="Password" [(ngModel)]="loginModel.Password"
-                    id="password" placeholder="Enter password" required />
+                    id="text-box" placeholder="Enter password" required />
                 </div>
                 <div>
-                    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+                    <button id="login-button" type="submit" [disabled]="loginForm.invalid">Login</button>
                 </div>
             </form>
-        </div>
-        <div>
-            <h4 routerLink="/user/registration" routerLinkActive="active">Don't have an account? Sign up here!</h4>
+            <div>
+                <h4 id="sign-up-link" routerLink="/user/registration" routerLinkActive="active">Don't have an account? Sign up here!</h4>
+            </div>
         </div>
     </div>
 </main>

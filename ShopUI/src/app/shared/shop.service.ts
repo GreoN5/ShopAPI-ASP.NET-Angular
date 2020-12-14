@@ -14,15 +14,15 @@ export class ShopService {
   productCategories = []
   productByCategories = []
 
-  getCategories():any {
+  getCategories(): any {
     return this.http.get(this.ApiURL + '/Shop/ProductCategories')
   }
 
-  getProducts():any {
+  getProducts(): any {
     return this.http.get(this.ApiURL + '/Shop/Products')
   }
 
-  getProductByCategories(category):any {
+  getProductByCategories(category): any {
     return this.http.get(this.ApiURL + '/Shop/Products/' + category)
   }
 }

@@ -10,9 +10,9 @@
   <div class="user-profile">
     <ul *ngIf="!isLoggedUser()">
       <li (click)="navigateToLoginForm()">Login</li>
-      <li (clicl)="navigateToRegistrationForm()">Sign up</li>
+      <li (click)="navigateToRegistrationForm()">Sign up</li>
     </ul>
-    <ul *ngIf="isLoggedUser">
+    <ul *ngIf="isLoggedUser()">
       <li (click)="navigateToCart()">My cart</li>
     </ul>
   </div>

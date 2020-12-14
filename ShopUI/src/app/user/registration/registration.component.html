@@ -1,3 +1,4 @@
+<app-header></app-header>
 <main>
     <div class="register-container">
         <div class="form-wrapper">
@@ -67,7 +68,7 @@
                     userService.registerModel.get('BankAccountNumber').hasError('pattern')">Invalid bank account number!</label>
                 </div>
                 <div>
-                    <button type="submit" [disabled]="userService.registerModel.invalid"></button>
+                    <button type="submit" [disabled]="userService.registerModel.invalid">Sign up</button>
                 </div>
             </form>
         </div>

@@ -13,6 +13,17 @@ export class HeaderComponent implements OnInit {
   constructor(public shopService: ShopService, public userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
+    this.showCategories()
+  }
+
+  showCategories() {
+    this.shopService.getCategories().subscribe(
+      data => {
+        this.shopService.productCategories = data
+      }, error => {
+        console.log(error)
+      }
+    )
   }
 
   showProductsByCategory(category) {
@@ -45,7 +56,7 @@ export class HeaderComponent implements OnInit {
   isLoggedUser() {
     let user = this.getLoggedUser()
 
-    if (user === null || user === '') {
+    if (user === null) {
       return false
     }
 

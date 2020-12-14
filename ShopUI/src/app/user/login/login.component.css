@@ -1,0 +1,70 @@
+.login-container {
+    position: relative;
+    height: 70vh;
+    width: 100%;
+}
+
+.form-wrapper {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1em;
+}
+
+#username-label {
+    font-size: 25px;
+    font-weight: 900;
+    position: absolute;
+    top: 0;
+    left: 30%;
+}
+
+#password-label {
+    font-size: 25px;
+    font-weight: 900;
+    position: absolute;
+    left: 30%;
+    top: 43%;
+}
+
+#login-button {
+    font-size: 20px;
+    padding: 5px 10px 5px 10px;
+    position: absolute;
+    right: 38%;
+    top: 105%;
+    border-radius: 10px;
+    border: 2px solid black;
+    box-shadow: 5px 5px 5px rgba(255, 0, 0, 0.5);
+    font-weight: 700;
+    color: black;
+    transition: 0.5s;
+}
+
+#login-button:hover {
+    cursor: pointer;
+    background-color: rgba(255, 0, 0, 0.5);
+    box-shadow: none;
+    transform: scale(1.15);
+}
+
+#login-button:disabled {
+    cursor: default;
+    border: 2px solid silver;
+    box-shadow: none;
+    color: silver;
+    background-color: white;
+}
+
+#sign-up-link {
+    position: absolute;
+    bottom: 0;
+    margin-left: 0.5em;
+    color: blue;
+}
+
+#sign-up-link:hover {
+    color: red;
+    cursor: pointer;
+}
