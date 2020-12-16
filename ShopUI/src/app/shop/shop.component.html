@@ -1,15 +1,16 @@
 <app-header></app-header>
 <router-outlet></router-outlet>
-<main *ngFor="let data of shopService.products">
+<main>
   <div class="products-container">
     <div class="product">
-      <div class="product-details">
+      <div class="product-details" *ngFor="let data of shopService.products">
+        <div class="product-name">{{data.name}}</div>
         <div class="product-image"></div>
-        {{data.name}}
-        {{data.description}}
-        {{data.price}}
-        {{data.quantity}}
-        {{data.status}}
+        <ul>
+          <li>Price: {{data.price}}</li>
+          <li>Available quantity: {{data.quantity}}</li>
+          <li>Status: {{data.status}}</li>
+        </ul>
       </div>
     </div>
   </div>

@@ -1,0 +1,122 @@
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.register-container {
+    position: relative;
+    width: 100%;
+    height: 95vh;
+}
+
+.form-wrapper {
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+    width: 40%;
+    margin-bottom: 20rem;
+}
+
+#username-label {
+    font-size: var(--label-font-size);
+    font-weight: var(--label-font-weight);
+    position: absolute;
+    top: 2%;
+    left: 41%;
+}
+
+#password-label {
+    font-size: var(--label-font-size);
+    font-weight: var(--label-font-weight);
+    position: absolute;
+    left: 41%;
+    top: 15.5%;
+}
+
+#confirm-password-label {
+    font-size: var(--label-font-size);
+    font-weight: var(--label-font-weight);
+    position: absolute;
+    top: 28.5%;
+    left: 34.5%;
+}
+
+#email-address-label {
+    font-size: var(--label-font-size);
+    font-weight: var(--label-font-weight);
+    position: absolute;
+    top: 41.5%;
+    left: 37%;
+}
+
+#address {
+    font-size: var(--label-font-size);
+    font-weight: var(--label-font-weight);
+    position: absolute;
+    top: 54.7%;
+    left: 41%;
+}
+
+#phone-number {
+    font-size: var(--label-font-size);
+    font-weight: var(--label-font-weight);
+    position: absolute;
+    top: 68%;
+    left: 37%;
+}
+
+#bank-account-number {
+    font-size: var(--label-font-size);
+    font-weight: var(--label-font-weight);
+    position: absolute;
+    top: 81%;
+    left: 32%;
+}
+
+#sign-up-button {
+    font-size: 20px;
+    padding: 5px 10px 5px 10px;
+    position: absolute;
+    right: 45%;
+    top: 100%;
+    border-radius: 10px;
+    border: 2px solid black;
+    box-shadow: 5px 5px 5px rgba(255, 0, 0, 0.5);
+    font-weight: 700;
+    color: black;
+    background-color: white;
+    transition: 0.7s;
+}
+
+#sign-up-button:hover {
+    cursor: pointer;
+    background-color: rgba(255, 0, 0, 0.5);
+    box-shadow: none;
+    transform: scale(1.15);
+}
+
+#sign-up-button:disabled {
+    cursor: default;
+    border: 2px solid silver;
+    box-shadow: none;
+    color: silver;
+    background-color: white;
+    transform: scale(1);
+}
+
+#sign-in-link {
+    position: absolute;
+    bottom: 2.5%;
+    left: 31%;
+    color: blue;
+    transition: 0.7s;
+}
+
+#sign-in-link:hover {
+    color: red;
+    cursor: pointer;
+    transform: scale(1.1);
+}

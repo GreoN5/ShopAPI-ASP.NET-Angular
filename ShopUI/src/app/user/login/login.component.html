@@ -4,12 +4,12 @@
         <div class="form-wrapper">
             <form #loginForm="ngForm" autocomplete="off" (submit)="submit(loginForm)">
                 <label id="username-label">Username: </label>
-                <div>
+                <div class="text-box-center">
                     <input #Username="ngModel" name="Username" [(ngModel)]="loginModel.Username" 
                     id="text-box" placeholder="Enter username" required />
                 </div>
                 <label id="password-label">Password: </label>
-                <div>
+                <div class="text-box-center">
                     <input #Password="ngModel" name="Password" [(ngModel)]="loginModel.Password"
                     id="text-box" placeholder="Enter password" required />
                 </div>

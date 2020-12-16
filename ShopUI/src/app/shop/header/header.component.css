@@ -1,6 +1,7 @@
 header {
   position: relative;
-  margin-bottom: 8vh;
+  background-color: white;
+  margin-bottom: 3vh;
 }
 
 .logo {
@@ -10,8 +11,9 @@ header {
 
 .nav-bar {
   position: absolute;
-  left: 30%;
-  bottom: 0;
+  left: 20%;
+  bottom: 10%;
+  width: 70%;
 }
 
 .nav-bar ul {
@@ -19,20 +21,22 @@ header {
   list-style-type: none;
   font-size: 1.3em;
   margin-top: 0;
-  padding-left: 10px;
+  padding-left: 0px;
   padding-bottom: 0;
+  
 }
 
 .nav-bar ul li {
   display: inline-block;
-  padding-right: 1em;
-  padding-left: 1em;
+  padding-right: 2.5em;
+  padding-left: 3em;
+  border: 1px solid black;
 }
 
 .user-profile {
   position: absolute;
-  bottom: 0;
-  right: 10%;
+  bottom: 10%;
+  right: 4%;
 }
 
 .user-profile ul {
@@ -44,6 +48,6 @@ header {
 
 .user-profile ul li {
   display: inline-block;
-  padding-left: 1em;
-  padding-right: 1em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 }

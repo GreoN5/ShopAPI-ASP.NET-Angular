@@ -1,45 +1,47 @@
 .login-container {
     position: relative;
-    height: 70vh;
+    height: 78vh;
     width: 100%;
 }
 
 .form-wrapper {
     position: absolute;
-    top: 35%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 1em;
+    padding: 2em;
+    width: 30%;
 }
 
 #username-label {
-    font-size: 25px;
-    font-weight: 900;
+    font-size: var(--label-font-size);
+    font-weight: var(--label-font-weight);
     position: absolute;
-    top: 0;
-    left: 30%;
+    top: 7%;
+    left: 38.5%;
 }
 
 #password-label {
-    font-size: 25px;
-    font-weight: 900;
+    font-size: var(--label-font-size);
+    font-weight: var(--label-font-weight);
     position: absolute;
-    left: 30%;
-    top: 43%;
+    left: 38.5%;
+    top: 45%;
 }
 
 #login-button {
     font-size: 20px;
     padding: 5px 10px 5px 10px;
     position: absolute;
-    right: 38%;
-    top: 105%;
+    right: 46%;
+    top: 100%;
     border-radius: 10px;
     border: 2px solid black;
     box-shadow: 5px 5px 5px rgba(255, 0, 0, 0.5);
     font-weight: 700;
     color: black;
-    transition: 0.5s;
+    background-color: white;
+    transition: 0.7s;
 }
 
 #login-button:hover {
@@ -55,16 +57,19 @@
     box-shadow: none;
     color: silver;
     background-color: white;
+    transform: scale(1);
 }
 
 #sign-up-link {
     position: absolute;
-    bottom: 0;
-    margin-left: 0.5em;
+    bottom: 7%;
+    left: 26.5%;
     color: blue;
+    transition: 0.7s;
 }
 
 #sign-up-link:hover {
     color: red;
     cursor: pointer;
+    transform: scale(1.1);
 }

@@ -1,18 +1,41 @@
+:root {
+  --label-font-size: 25px;
+  --label-font-weight: 900;
+}
+
 body {
   margin: 0;
   padding: 0;
+  background-color: rgba(255, 0, 0, 0.6);
+  height: 100%;
 }
 
 main {
   position: relative;
+  background-color: white;
+  width: 90%;
+  left: 5%;
+}
+
+.text-box-center {
+  text-align: center;
 }
 
 #text-box {
   font-size: 20px;
   padding: 5px;
-  margin: 1em 1em 2em 0.5em;
+  margin: 1em 1em 2em 0em;
   border: 3px solid black;
   border-radius: 20px;
   box-shadow: 5px 5px 5px rgba(255, 0, 0, 0.5);
   text-align: center;
+  width: 65%;
+  transition: 0.7s;
+  outline: none;
+}
+
+#text-box:focus {
+  width: 75%;
+  box-shadow: none;
+  border-color: red;
 }

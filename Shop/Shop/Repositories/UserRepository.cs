@@ -123,7 +123,6 @@ namespace Shop.Repositories
 			var claims = new[]
 			{
 				new Claim("username", userToken.Username),
-				new Claim("email", userToken.EmailAddress),
 				new Claim("role", userToken.Role.ToString()),
 				new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
 			};
