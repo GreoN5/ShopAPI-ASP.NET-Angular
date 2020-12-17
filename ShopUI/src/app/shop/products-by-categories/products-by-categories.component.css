@@ -1,11 +1,47 @@
+input[type=button] {
+  margin-right: 1em;
+  margin-bottom: 0.5em;
+}
+
 .products-container {
-  background-color: red;
   margin-left: 3em;
   margin-right: 3em;
 }
 
 .product {
-  margin-left: 1em;
   margin-right: 1em;
   padding: 1em 1em 1em 1em;
+  display: flex;
+  width: 100%;
+}
+
+.product-details {
+  width: 20%;
+  border: 1px solid black;
+  margin-right: 2em;
+}
+
+.product-name {
+  text-align: center;
+  font-weight: 900;
+  font-size: 1.5em;
+}
+
+.product-image {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.product-price {
+  text-align: center;
+  margin-top: 1em;
+}
+
+.product-status {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.product-actions {
+  text-align: right;
 }

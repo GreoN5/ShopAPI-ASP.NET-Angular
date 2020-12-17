@@ -12,7 +12,7 @@ export class ShopService {
 
   products = []
   productCategories = []
-  productByCategories = []
+  productsByCategories = []
 
   getCategories(): any {
     return this.http.get(this.ApiURL + '/Shop/ProductCategories')
@@ -22,7 +22,7 @@ export class ShopService {
     return this.http.get(this.ApiURL + '/Shop/Products')
   }
 
-  getProductByCategories(category): any {
+  getProductsByCategories(category): any {
     return this.http.get(this.ApiURL + '/Shop/Products/' + category)
   }
 }

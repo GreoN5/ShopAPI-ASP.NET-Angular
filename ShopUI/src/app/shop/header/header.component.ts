@@ -26,15 +26,8 @@ export class HeaderComponent implements OnInit {
     )
   }
 
-  showProductsByCategory(category) {
-    this.shopService.getProductByCategories(category).subscribe(
-      data => {
-        this.shopService.productByCategories = data
-        this.router.navigateByUrl('/home/' + category)
-      }, error => {
-        console.log(error)
-      }
-    )
+  navigateToCategory(category) {
+    this.router.navigateByUrl('/home/' + category)
   }
 
   navigateToRegistrationForm() {

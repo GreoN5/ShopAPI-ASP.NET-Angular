@@ -1,14 +1,16 @@
 <app-header></app-header>
-<main *ngFor="let data of shopService.productByCategories">
+<main>
     <div class="products-container">
     <div class="product">
-      <div class="product-details">
+      <div class="product-details" *ngFor="let data of shopService.productsByCategories">
+        <div class="product-name">{{data.name}}</div>
         <div class="product-image"></div>
-        {{data.name}}
-        {{data.description}}
-        {{data.price}}
-        {{data.quantity}}
-        {{data.status}}
+        <div class="product-price">Price: {{data.price}}</div>
+        <div class="product-status">Status: {{data.status}}</div>
+        <div class="product-actions">
+          <input type="button" value="Details" />
+          <input type="button" value="Add to cart" />
+        </div>
       </div>
     </div>
   </div>

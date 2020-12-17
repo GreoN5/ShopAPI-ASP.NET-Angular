@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ShopService } from '../shared/shop.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { ShopService } from '../shared/shop.service';
 })
 export class ShopComponent implements OnInit {
 
-  constructor(public shopService: ShopService) { }
+  constructor(public shopService: ShopService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.showCategories()
