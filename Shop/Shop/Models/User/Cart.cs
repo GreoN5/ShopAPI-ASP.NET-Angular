@@ -14,5 +14,7 @@ namespace Shop.Models.User
 		public decimal FinalPrice { get; set; }
 
 		public List<Product> Products { get; set; } = new List<Product>();
+
+		public User User { get; set; }
 	}
 }

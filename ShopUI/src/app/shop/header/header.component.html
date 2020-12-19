@@ -9,11 +9,12 @@
   </div>
   <div class="user-profile">
     <ul *ngIf="!isLoggedUser()">
-      <li (click)="navigateToLoginForm()">Login</li>
-      <li (click)="navigateToRegistrationForm()">Sign up</li>
+      <li routerLink="/user/login" routerLinkActive="active">Login</li>
+      <li routerLink="/user/registration" routerLinkActive="active">Sign up</li>
     </ul>
     <ul *ngIf="isLoggedUser()">
-      <li (click)="navigateToCart()">My cart</li>
+      <li routerLink="/user/cart" routerLinkActive="active">My cart</li>
+      <li (click)="logout()">Logout</li>
     </ul>
   </div>
 </header>

@@ -30,18 +30,6 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('/home/' + category)
   }
 
-  navigateToRegistrationForm() {
-    this.router.navigateByUrl('/user/registration')
-  }
-
-  navigateToLoginForm() {
-    this.router.navigateByUrl('/user/login')
-  }
-
-  navigateToCart() {
-    this.router.navigateByUrl('/user/cart')
-  }
-
   getLoggedUser() {
     return localStorage.getItem('loggedUser')
   }
@@ -54,5 +42,10 @@ export class HeaderComponent implements OnInit {
     }
 
     return true
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigateByUrl('/home')
   }
 }

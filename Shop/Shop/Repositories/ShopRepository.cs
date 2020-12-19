@@ -66,10 +66,11 @@ namespace Shop.Repositories
 		public List<Product> ShowProductsInCart(string username)
 		{
 			User user = GetUserByUsername(username);
+			Cart cart = GetCartByUser(user.CartID);
 
 			if (user != null)
 			{
-				return user.Cart.Products;
+				return cart.Products;
 			}
 
 			return null;
@@ -79,13 +80,14 @@ namespace Shop.Repositories
 		{
 			User user = GetUserByUsername(username);
 			Product product = GetProductByProductName(productName);
+			Cart cart = GetCartByUser(user.CartID);
 
 			if (user == null || product == null)
 			{
 				return false;
 			}
 
-			user.Cart.Products.Add(product);
+			cart.Products.Add(product);
 			return true;
 		}
 
@@ -93,13 +95,14 @@ namespace Shop.Repositories
 		{
 			User user = GetUserByUsername(username);
 			Product product = GetProductByProductName(productName);
+			Cart cart = GetCartByUser(user.CartID);
 
 			if (user == null || product == null)
 			{
 				return false;
 			}
 
-			user.Cart.Products.Remove(product);
+			cart.Products.Remove(product);
 			return true;
 		}
 
@@ -107,13 +110,14 @@ namespace Shop.Repositories
 		{
 			User user = GetUserByUsername(username);
 			Product product = GetProductByProductName(productName);
+			Cart cart = GetCartByUser(user.CartID);
 
 			if (user == null || product == null)
 			{
 				return false;
 			}
 
-			if (user.Cart.Products.Contains(product))
+			if (cart.Products.Contains(product))
 			{
 				product.Quantity = quantity;
 				return true;
@@ -125,31 +129,33 @@ namespace Shop.Repositories
 		public decimal GetFinalPrice(string username)
 		{
 			User user = GetUserByUsername(username);
+			Cart cart = GetCartByUser(user.CartID);
 
 			if (user == null)
 			{
 				return -1;
 			}
 
-			for (int i = 0; i < user.Cart.Products.Count; i++)
+			for (int i = 0; i < cart.Products.Count; i++)
 			{
-				user.Cart.FinalPrice += user.Cart.Products[i].Price;
+				cart.FinalPrice += cart.Products[i].Price;
 			}
 
-			return user.Cart.FinalPrice;
+			return cart.FinalPrice;
 		}
 
 		public bool ClearCart(string username)
 		{
 			User user = GetUserByUsername(username);
+			Cart cart = GetCartByUser(user.CartID);
 
 			if (user == null)
 			{
 				return false;
 			}
 
-			user.Cart.Products.Clear();
-			user.Cart.FinalPrice = 0;
+			cart.Products.Clear();
+			cart.FinalPrice = 0;
 
 			return true;
 		}
@@ -162,6 +168,11 @@ namespace Shop.Repositories
 		private Product GetProductByProductName(string productName)
 		{
 			return _shopContext.Products.Find(productName);
+		}
+
+		private Cart GetCartByUser(int cartID)
+		{
+			return _shopContext.Carts.Where(u => u.ID == cartID).FirstOrDefault();
 		}
 	}
 }

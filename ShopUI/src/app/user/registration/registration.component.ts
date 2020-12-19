@@ -17,7 +17,7 @@ export class RegistrationComponent implements OnInit {
 
   submit() {
     this.userService.register().subscribe(
-      response => {
+      (response: any) => {
         this.userService.registerModel.reset()
       }, error => {
         console.log(error)

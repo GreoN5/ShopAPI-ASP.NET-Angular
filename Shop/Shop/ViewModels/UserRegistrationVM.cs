@@ -8,12 +8,12 @@ namespace Shop.ViewModels
 		public string Username { get; set; }
 
 		[Required(ErrorMessage = "Password is required!")]
-		[RegularExpression(@"(?=^[^\s]{6,}$)(?=.*\d)(?=.*[a-zA-Z])", 
+		[RegularExpression(@"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$", 
 			ErrorMessage = "The password should be at least 6 symbols, containing lowercase letter(s), uppercase letter(s) and digits without spaces!")]
 		public string Password { get; set; }
 
 		[Required(ErrorMessage = "Email is required!")]
-		[EmailAddress]
+		[EmailAddress(ErrorMessage = "Invalid E-mail!")]
 		public string EmailAddress { get; set; }
 
 		public string Address { get; set; }

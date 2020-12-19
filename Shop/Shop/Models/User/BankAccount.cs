@@ -10,5 +10,7 @@ namespace Shop.Models.User
 
 		[Column(TypeName = "decimal(10, 2)")]
 		public decimal BankAccountBalance { get; set; }
+
+		public User User { get; set; }
 	}
 }

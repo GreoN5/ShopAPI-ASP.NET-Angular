@@ -37,12 +37,7 @@ namespace Shop.Repositories
 					Address = userRegistration.Address,
 					PhoneNumber = userRegistration.PhoneNumber,
 					Role = "User",
-					BankAccount = new BankAccount()
-					{
-						BankAccountNumber = userRegistration.BankAccountNumber,
-						BankAccountBalance = SetBankAccountBalance()
-					},
-					Cart = new Cart()
+					BankAccountNumber = userRegistration.BankAccountNumber
 				}; // returns the user with null username
 			}
 
@@ -56,12 +51,7 @@ namespace Shop.Repositories
 					Address = userRegistration.Address,
 					PhoneNumber = userRegistration.PhoneNumber,
 					Role = "User",
-					BankAccount = new BankAccount()
-					{
-						BankAccountNumber = userRegistration.BankAccountNumber,
-						BankAccountBalance = SetBankAccountBalance()
-					},
-					Cart = new Cart()
+					BankAccountNumber = userRegistration.BankAccountNumber
 				}; // returns the user with null email address
 			}
 
@@ -75,8 +65,7 @@ namespace Shop.Repositories
 					Address = userRegistration.Address,
 					PhoneNumber = userRegistration.PhoneNumber,
 					Role = "User",
-					BankAccount = null,
-					Cart = new Cart()
+					BankAccountNumber = null
 				}; // returns the user with null back account
 			}
 
@@ -89,13 +78,20 @@ namespace Shop.Repositories
 				Address = userRegistration.Address,
 				PhoneNumber = userRegistration.PhoneNumber,
 				Role = "User",
-				BankAccount = new BankAccount()
-				{
-					BankAccountNumber = userRegistration.BankAccountNumber,
-					BankAccountBalance = SetBankAccountBalance()
-				},
-				Cart = new Cart()
+				BankAccountNumber = userRegistration.BankAccountNumber
 			};
+
+			_shopContext.BankAccounts.Add(new BankAccount() 
+			{
+				BankAccountNumber = newUser.BankAccountNumber,
+				BankAccountBalance = SetBankAccountBalance(),
+				User = newUser
+			});
+
+			_shopContext.Carts.Add(new Cart()
+			{
+				User = newUser
+			});
 
 			_shopContext.Users.Add(newUser);
 			_shopContext.SaveChanges();
@@ -149,17 +145,17 @@ namespace Shop.Repositories
 
 		private bool CheckIfUsernameAlreadyExists(List<User> users, string username) 
 		{
-			return users.Any(u => u.Username == username);
+			return users.Where(u => u.Role == "User").Any(u => u.Username == username);
 		}
 
 		private bool CheckIfEmailAlreadyExists(List<User> users, string email)
 		{
-			return users.Any(u => u.EmailAddress == email);
+			return users.Where(u => u.Role == "User").Any(u => u.EmailAddress == email);
 		}
 
 		private bool CheckIfBankAccountNumberAlreadyExists(List<User> users, string bankAccountNumber)
 		{
-			return users.Any(u => u.BankAccount.BankAccountNumber == bankAccountNumber);
+			return users.Where(u => u.Role == "User").Any(u => u.BankAccountNumber == bankAccountNumber);
 		}
 	}
 }

@@ -10,7 +10,7 @@ using Shop.Data;
 namespace Shop.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    [Migration("20201202145529_Shop")]
+    [Migration("20201219162819_Shop")]
     partial class Shop
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -66,7 +66,12 @@ namespace Shop.Migrations
                     b.Property<decimal>("BankAccountBalance")
                         .HasColumnType("decimal(10,2)");
 
+                    b.Property<string>("Username")
+                        .HasColumnType("varchar(100)");
+
                     b.HasKey("BankAccountNumber");
+
+                    b.HasIndex("Username");
 
                     b.ToTable("BankAccounts");
                 });
@@ -95,9 +100,9 @@ namespace Shop.Migrations
                         .HasColumnType("varchar(500)");
 
                     b.Property<string>("BankAccountNumber")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CartID")
+                    b.Property<int>("CartID")
                         .HasColumnType("int");
 
                     b.Property<string>("EmailAddress")
@@ -114,9 +119,8 @@ namespace Shop.Migrations
 
                     b.HasKey("Username");
 
-                    b.HasIndex("BankAccountNumber");
-
-                    b.HasIndex("CartID");
+                    b.HasIndex("CartID")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });
@@ -128,24 +132,29 @@ namespace Shop.Migrations
                         .HasForeignKey("CartID");
                 });
 
+            modelBuilder.Entity("Shop.Models.User.BankAccount", b =>
+                {
+                    b.HasOne("Shop.Models.User.User", "User")
+                        .WithMany()
+                        .HasForeignKey("Username");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Shop.Models.User.User", b =>
                 {
-                    b.HasOne("Shop.Models.User.BankAccount", "BankAccount")
-                        .WithMany()
-                        .HasForeignKey("BankAccountNumber");
-
-                    b.HasOne("Shop.Models.User.Cart", "Cart")
-                        .WithMany()
-                        .HasForeignKey("CartID");
-
-                    b.Navigation("BankAccount");
-
-                    b.Navigation("Cart");
+                    b.HasOne("Shop.Models.User.Cart", null)
+                        .WithOne("User")
+                        .HasForeignKey("Shop.Models.User.User", "CartID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Shop.Models.User.Cart", b =>
                 {
                     b.Navigation("Products");
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

@@ -7,7 +7,7 @@
                 <label class="required"></label>
                 <label id="username-label">Username: </label>
                 <label *ngIf="userService.registerModel.get('Username').touched &&
-                userService.registerModel.get('Username').errors?.required">This field is required!</label>
+                    userService.registerModel.get('Username').errors?.required">This field is required!</label>
                 <div class="text-box-center">
                     <input id="text-box" type="text" formControlName="Username" placeholder="Enter username" />
                 </div>
@@ -15,21 +15,21 @@
                     <label id="password-label">Password: </label>
                     <label class="required"></label>
                     <label *ngIf="userService.registerModel.get('Passwords.Password').touched && 
-                    userService.registerModel.get('Passwords.Password').errors?.required">This field is required!</label>
+                        userService.registerModel.get('Passwords.Password').errors?.required">This field is required!</label>
                     <label *ngIf="userService.registerModel.get('Passwords.Password').touched &&
-                    userService.registerModel.get('Passwords.Password').hasError('pattern')">
-                    Password should contain at least 6 symbols including lowercase and uppercase characters without space!</label>
+                        userService.registerModel.get('Passwords.Password').hasError('pattern')">
+                        Password should contain at least 6 symbols including lowercase and uppercase characters without space!</label>
                     <div class="text-box-center">
                         <input id="text-box" type="password" formControlName="Password" placeholder="Enter password" />
                     </div>
                     <label id="confirm-password-label">Confirm password: </label>
                     <label class="required"></label>
                     <label *ngIf="userService.registerModel.get('Passwords.ConfirmPassword').touched &&
-                    userService.registerModel.get('Passwords.ConfirmPassword').errors?.required">
-                    This field is required!</label>
+                        userService.registerModel.get('Passwords.ConfirmPassword').errors?.required">
+                        This field is required!</label>
                     <label *ngIf="userService.registerModel.get('Passwords.ConfirmPassword').touched &&
-                    userService.registerModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">
-                    Passwords does not match!</label>
+                        userService.registerModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">
+                        Passwords does not match!</label>
                     <div class="text-box-center">
                         <input id="text-box" type="password" formControlName="ConfirmPassword" placeholder="Confirm password" />
                     </div>
@@ -37,9 +37,9 @@
                 <label id="email-address-label">Email address: </label>
                 <label class="required"></label>
                 <label *ngIf="userService.registerModel.get('EmailAddress').touched &&
-                userService.registerModel.get('EmailAddress').errors?.required">This field is required!</label>
+                    userService.registerModel.get('EmailAddress').errors?.required">This field is required!</label>
                 <label *ngIf="userService.registerModel.get('EmailAddress').touched &&
-                userService.registerModel.get('EmailAddress').hasError('patern')">Invalid Email address!</label>
+                    userService.registerModel.get('EmailAddress').hasError('patern')">Invalid Email address!</label>
                 <div class="text-box-center">
                     <input id="text-box" type="email" formControlName="EmailAddress" placeholder="Enter your email address" />
                 </div>
@@ -50,20 +50,20 @@
                 <label id="phone-number">Phone number: </label>
                 <label class="required"></label>
                 <label *ngIf="userService.registerModel.get('PhoneNumber').touched &&
-                userService.registerModel.get('PhoneNumber').errors?.required">This field is required!</label>
+                    userService.registerModel.get('PhoneNumber').errors?.required">This field is required!</label>
                 <label *ngIf="userService.registerModel.get('PhoneNumber').touched &&
-                userService.registerModel.get('PhoneNumber').hasError('maxlength') &&
-                userService.registerModel.get('PhoneNumber').hasError('minlength')">
-                Phone number should consists of 10 digits</label>
+                    userService.registerModel.get('PhoneNumber').hasError('maxlength') &&
+                    userService.registerModel.get('PhoneNumber').hasError('minlength')">
+                    Phone number should consists of 10 digits</label>
                 <div class="text-box-center">
-                    <input id="text-box" type="number" formControlName="PhoneNumber" placeholder="Enter your phone number" />
+                    <input id="text-box" type="text" formControlName="PhoneNumber" placeholder="Enter your phone number" />
                 </div>
                 <label id="bank-account-number">Bank account number: </label>
                 <label class="required"></label>
                 <label *ngIf="userService.registerModel.get('BankAccountNumber').touched &&
-                userService.registerModel.get('BankAccountNumber').errors?.required">This field is required!</label>
+                    userService.registerModel.get('BankAccountNumber').errors?.required">This field is required!</label>
                 <label *ngIf="userService.registerModel.get('BankAccountNumber').touched &&
-                userService.registerModel.get('BankAccountNumber').hasError('pattern')">Invalid bank account number!</label>
+                    userService.registerModel.get('BankAccountNumber').hasError('pattern')">Invalid bank account number!</label>
                 <div class="text-box-center">
                     <input id="text-box" type="text" formControlName="BankAccountNumber" placeholder="Enter you bank account number" />
                 </div>

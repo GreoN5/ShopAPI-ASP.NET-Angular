@@ -7,18 +7,6 @@ namespace Shop.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "BankAccounts",
-                columns: table => new
-                {
-                    BankAccountNumber = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    BankAccountBalance = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BankAccounts", x => x.BankAccountNumber);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Carts",
                 columns: table => new
                 {
@@ -66,25 +54,43 @@ namespace Shop.Migrations
                     Address = table.Column<string>(type: "varchar(500)", nullable: true),
                     PhoneNumber = table.Column<string>(type: "varchar(10)", nullable: true),
                     Role = table.Column<string>(type: "varchar(10)", nullable: true),
-                    BankAccountNumber = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    CartID = table.Column<int>(type: "int", nullable: true)
+                    BankAccountNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CartID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Username);
                     table.ForeignKey(
-                        name: "FK_Users_BankAccounts_BankAccountNumber",
-                        column: x => x.BankAccountNumber,
-                        principalTable: "BankAccounts",
-                        principalColumn: "BankAccountNumber",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_Users_Carts_CartID",
                         column: x => x.CartID,
                         principalTable: "Carts",
                         principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BankAccounts",
+                columns: table => new
+                {
+                    BankAccountNumber = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    BankAccountBalance = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    Username = table.Column<string>(type: "varchar(100)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BankAccounts", x => x.BankAccountNumber);
+                    table.ForeignKey(
+                        name: "FK_BankAccounts_Users_Username",
+                        column: x => x.Username,
+                        principalTable: "Users",
+                        principalColumn: "Username",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BankAccounts_Username",
+                table: "BankAccounts",
+                column: "Username");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_CartID",
@@ -92,26 +98,22 @@ namespace Shop.Migrations
                 column: "CartID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_BankAccountNumber",
-                table: "Users",
-                column: "BankAccountNumber");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Users_CartID",
                 table: "Users",
-                column: "CartID");
+                column: "CartID",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "BankAccounts");
+
+            migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "BankAccounts");
 
             migrationBuilder.DropTable(
                 name: "Carts");

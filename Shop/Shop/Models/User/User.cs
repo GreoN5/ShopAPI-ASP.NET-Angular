@@ -24,8 +24,10 @@ namespace Shop.Models.User
 		[Column(TypeName = "varchar(10)")]
 		public string Role { get; set; }
 
-		public BankAccount BankAccount { get; set; }
+		[ForeignKey("BankAccounts")]
+		public string BankAccountNumber { get; set; }
 
-		public Cart Cart { get; set; }
+		[ForeignKey("Carts")]
+		public int CartID { get; set; }
 	}
 }

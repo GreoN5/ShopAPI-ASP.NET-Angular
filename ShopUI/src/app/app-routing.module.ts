@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
 import { ProductsByCategoriesComponent } from './shop/products-by-categories/products-by-categories.component';
 import { ShopComponent } from './shop/shop.component';
 import { CartComponent } from './user/cart/cart.component';
@@ -12,7 +13,7 @@ const routes: Routes = [
   { path: 'home/:category', component: ProductsByCategoriesComponent },
   { path: 'user/registration', component: RegistrationComponent },
   { path: 'user/login', component: LoginComponent },
-  { path: 'user/cart', component: CartComponent }
+  { path: 'user/cart', component: CartComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

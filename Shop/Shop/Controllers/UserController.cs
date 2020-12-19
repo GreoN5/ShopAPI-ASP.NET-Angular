@@ -35,7 +35,7 @@ namespace Shop.Controllers
 				return StatusCode(410, $"Already existing user with email \"{userRegistration.EmailAddress}\"!");
 			}
 
-			if (user.BankAccount == null)
+			if (user.BankAccountNumber == null)
 			{
 				return StatusCode(411, $"Already existing user with bank account \"{userRegistration.BankAccountNumber}\"!");
 			}

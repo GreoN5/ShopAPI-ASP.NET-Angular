@@ -14,12 +14,12 @@ export class UserService {
   registerModel = this.fb.group({
     Username: new FormControl('', [Validators.required]),
     Passwords: this.fb.group({
-      Password: new FormControl('', [Validators.required, Validators.pattern('(?=^[^\s]{6,}$)(?=.*\d)(?=.*[a-zA-Z])')]),
+      Password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$')]),
       ConfirmPassword: new FormControl('', [Validators.required])
     }, {
       validators: this.comparePasswords
     }),
-    EmailAddress: new FormControl('', [Validators.required, Validators.pattern('/\S+@\S+\.\S+/')]),
+    EmailAddress: new FormControl('', [Validators.required, Validators.pattern(/\S+@\S+\.\S+/)]),
     Address: new FormControl(''),
     PhoneNumber: new FormControl('', [Validators.required, Validators.maxLength(10), Validators.minLength(10)]),
     BankAccountNumber: new FormControl('', [Validators.required, Validators.pattern('(^BG)([0-9]{2})([A-Z]{4})([0-9]{14}$)')])
@@ -41,13 +41,13 @@ export class UserService {
     let registrationUser = {
       Username: this.registerModel.value.Username,
       Password: this.registerModel.value.Passwords.Password,
-      EmailAddress: this.registerModel.value.EmailAdress,
+      EmailAddress: this.registerModel.value.EmailAddress,
       Address: this.registerModel.value.Address,
       PhoneNumber: this.registerModel.value.PhoneNumber,
       BankAccountNumber: this.registerModel.value.BankAccountNumber
     }
 
-    return this.http.post(this.ApiURL + 'User/Registration', registrationUser)
+    return this.http.post(this.ApiURL + '/User/Registration', registrationUser)
   }
 
   login(data) {
