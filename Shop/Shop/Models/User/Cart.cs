@@ -15,6 +15,7 @@ namespace Shop.Models.User
 
 		public List<Product> Products { get; set; } = new List<Product>();
 
+		[Required]
 		public User User { get; set; }
 	}
 }

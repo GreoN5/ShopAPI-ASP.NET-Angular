@@ -19,6 +19,24 @@ namespace Shop.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
+            modelBuilder.Entity("Shop.Models.Admin.Admin", b =>
+                {
+                    b.Property<string>("Username")
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("varchar(10)");
+
+                    b.HasKey("Username");
+
+                    b.ToTable("Admins");
+                });
+
             modelBuilder.Entity("Shop.Models.Products.Product", b =>
                 {
                     b.Property<int>("ID")
@@ -37,6 +55,7 @@ namespace Shop.Migrations
                         .HasColumnType("varchar(500)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("varchar(50)");
 
                     b.Property<decimal>("Price")
@@ -98,21 +117,26 @@ namespace Shop.Migrations
                         .HasColumnType("varchar(500)");
 
                     b.Property<string>("BankAccountNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CartID")
                         .HasColumnType("int");
 
                     b.Property<string>("EmailAddress")
+                        .IsRequired()
                         .HasColumnType("varchar(250)");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("PhoneNumber")
+                        .IsRequired()
                         .HasColumnType("varchar(10)");
 
                     b.Property<string>("Role")
+                        .IsRequired()
                         .HasColumnType("varchar(10)");
 
                     b.HasKey("Username");
@@ -152,7 +176,8 @@ namespace Shop.Migrations
                 {
                     b.Navigation("Products");
 
-                    b.Navigation("User");
+                    b.Navigation("User")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

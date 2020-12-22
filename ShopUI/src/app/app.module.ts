@@ -12,6 +12,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './shop/header/header.component';
 import { ProductsByCategoriesComponent } from './shop/products-by-categories/products-by-categories.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdminComponent } from './shop/admin/admin.component';
+import { ShowUsersComponent } from './shop/admin/show-users/show-users.component';
+import { ShowProductsComponent } from './shop/admin/show-products/show-products.component';
+import { CreateProductComponent } from './shop/admin/create-product/create-product.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ShopComponent,
     CartComponent,
     HeaderComponent,
-    ProductsByCategoriesComponent
+    ProductsByCategoriesComponent,
+    AdminComponent,
+    ShowUsersComponent,
+    ShowProductsComponent,
+    CreateProductComponent
   ],
   imports: [
     BrowserModule,

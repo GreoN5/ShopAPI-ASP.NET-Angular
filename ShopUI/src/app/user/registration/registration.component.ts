@@ -11,6 +11,11 @@ export class RegistrationComponent implements OnInit {
 
   constructor(public userService: UserService, private router: Router) { }
 
+  usernameInUseMsg: boolean
+  emailInUseMsg: boolean
+  bankAccountNumberInUseMsg: boolean
+  registrationSuccess: boolean
+
   ngOnInit(): void {
     this.userService.registerModel.reset()
   }
@@ -18,21 +23,19 @@ export class RegistrationComponent implements OnInit {
   submit() {
     this.userService.register().subscribe(
       (response: any) => {
+        this.registrationSuccess = true
         this.userService.registerModel.reset()
       }, error => {
+        localStorage.setItem('error', error)
         console.log(error)
 
         if (error.status === 409) {
-          alert(`Username ${this.userService.registerModel.value.Username} already exists! Try another one.`)
+          this.usernameInUseMsg = true
         } else if (error.status === 410) {
-          alert(`Email ${this.userService.registerModel.value.EmailAddress} already exists! Try another one.`)
+          this.emailInUseMsg = true
         } else if (error.status === 411) {
-          alert(`Bank account number ${this.userService.registerModel.value.BankAccountNumber} already exists! Try another one.`)
+          this.bankAccountNumberInUseMsg = true
         }
       })
-  }
-
-  getError() {
-    return localStorage.getItem('error')
   }
 }

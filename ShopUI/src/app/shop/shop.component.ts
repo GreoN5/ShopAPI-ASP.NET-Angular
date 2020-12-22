@@ -11,6 +11,8 @@ export class ShopComponent implements OnInit {
 
   constructor(public shopService: ShopService, private route: ActivatedRoute) { }
 
+  userRole = localStorage.getItem('role')
+
   ngOnInit(): void {
     this.showCategories()
     this.showProducts()

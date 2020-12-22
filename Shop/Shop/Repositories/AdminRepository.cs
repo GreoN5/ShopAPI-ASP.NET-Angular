@@ -2,6 +2,7 @@
 using Shop.Models.Products;
 using Shop.Models.User;
 using Shop.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -26,9 +27,79 @@ namespace Shop.Repositories
 			return _shopContext.Products.ToList();
 		}
 
+		public User AddNewUser(UserRegistrationVM newUser)
+		{
+			if (DoesUsernameAlreadyExists(newUser.Username))
+			{
+				return new User()
+				{
+					Username = null,
+					Password = newUser.Password,
+					EmailAddress = newUser.EmailAddress,
+					Address = newUser.Address,
+					PhoneNumber = newUser.PhoneNumber,
+					BankAccountNumber = newUser.BankAccountNumber
+				}; // returns the user with null username
+			}
+
+			if (DoesEmailAlreadyExists(newUser.EmailAddress))
+			{
+				return new User()
+				{
+					Username = newUser.Username,
+					Password = newUser.Password,
+					EmailAddress = null,
+					Address = newUser.Address,
+					PhoneNumber = newUser.PhoneNumber,
+					BankAccountNumber = newUser.BankAccountNumber
+				}; // returns the user with null email address
+			}
+
+			if (DoesBankAccountNumberAlreadyExists(newUser.BankAccountNumber))
+			{
+				return new User()
+				{
+					Username = newUser.Username,
+					Password = newUser.Password,
+					EmailAddress = newUser.EmailAddress,
+					Address = newUser.Address,
+					PhoneNumber = newUser.PhoneNumber,
+					BankAccountNumber = null
+				}; // returns the user with null back account
+			}
+
+			//if there are no matches for duplicated attributes of the user it will create a complete user and add it to the database
+		   User user = new User()
+		   {
+			   Username = newUser.Username,
+			   Password = newUser.Password,
+			   EmailAddress = newUser.EmailAddress,
+			   Address = newUser.Address,
+			   PhoneNumber = newUser.PhoneNumber,
+			   BankAccountNumber = newUser.BankAccountNumber
+		   };
+
+			_shopContext.BankAccounts.Add(new BankAccount()
+			{
+				BankAccountNumber = user.BankAccountNumber,
+				BankAccountBalance = SetBankAccountBalance(),
+				User = user
+			});
+
+			_shopContext.Carts.Add(new Cart()
+			{
+				User = user
+			});
+
+			_shopContext.Users.Add(user);
+			_shopContext.SaveChanges();
+
+			return user;
+		}
+
 		public bool CreateNewProduct(ProductVM product)
 		{
-			if (DoesProductExists(product.Name))
+			if (DoesProductAlreadyExists(product.Name))
 			{
 				return false;
 			}
@@ -101,7 +172,29 @@ namespace Shop.Repositories
 			}
 		}
 
-		private bool DoesProductExists(string productName)
+		private decimal SetBankAccountBalance()
+		{
+			Random random = new Random();
+
+			return random.Next(100, 5000);
+		}
+
+		private bool DoesUsernameAlreadyExists(string username)
+		{
+			return _shopContext.Users.Any(u => u.Username == username);
+		}
+
+		private bool DoesEmailAlreadyExists(string email)
+		{
+			return _shopContext.Users.Any(u => u.EmailAddress == email);
+		}
+
+		private bool DoesBankAccountNumberAlreadyExists(string bankAccountNumber)
+		{
+			return _shopContext.Users.Any(u => u.BankAccountNumber == bankAccountNumber);
+		}
+
+		private bool DoesProductAlreadyExists(string productName)
 		{
 			return _shopContext.Products.Any(pn => pn.Name == productName);
 		}

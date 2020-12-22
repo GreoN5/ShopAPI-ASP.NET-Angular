@@ -68,7 +68,7 @@ namespace Shop.Controllers
 				return Ok("There are currently no products in your cart!");
 			}
 
-			return Unauthorized("You must have an account in order to access your cart!");
+			return Unauthorized("You must logged in in order to access your cart!");
 		}
 
 		[Route("{username}/Cart/FinalPrice")]

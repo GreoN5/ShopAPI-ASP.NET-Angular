@@ -1,8 +1,22 @@
-<app-header></app-header>
+<app-header id="back-to-top"></app-header>
+<div class="duplicated-username" *ngIf="usernameInUseMsg">
+    <p>Username already exists! Try another one.</p>
+</div>
+<div class="duplicated-email" *ngIf="emailInUseMsg">
+    <p>Email already exists! Try another one.</p>
+</div>
+<div class="duplicated-bank-account-number" *ngIf="bankAccountNumberInUseMsg">
+    <p>Bank account number already exists! Try another one.</p>
+</div>
+<div class="registration-success" *ngIf="registrationSuccess">
+    <p>
+        You are successfully registered! 
+        <a id="login-link" routerLink="/user/login" routerLinkActive="active">Click here to login.</a>
+    </p>
+</div>
 <main>
     <div class="register-container">
         <div class="form-wrapper">
-            <span class="error" (ng-show)="getError()"></span>
             <form [formGroup]="userService.registerModel" autocomplete="off" (ngSubmit)="submit()">
                 <label class="required"></label>
                 <label id="username-label">Username: </label>
@@ -68,7 +82,8 @@
                     <input id="text-box" type="text" formControlName="BankAccountNumber" placeholder="Enter you bank account number" />
                 </div>
                 <div>
-                    <button id="sign-up-button" type="submit" [disabled]="userService.registerModel.invalid">Sign up</button>
+                    <button id="sign-up-button" type="submit" [disabled]="userService.registerModel.invalid" 
+                    onClick="document.getElementById('back-to-top').scrollIntoView();">Sign up</button>
                 </div>
             </form>
             <div>

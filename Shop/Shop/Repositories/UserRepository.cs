@@ -36,7 +36,6 @@ namespace Shop.Repositories
 					EmailAddress = userRegistration.EmailAddress,
 					Address = userRegistration.Address,
 					PhoneNumber = userRegistration.PhoneNumber,
-					Role = "User",
 					BankAccountNumber = userRegistration.BankAccountNumber
 				}; // returns the user with null username
 			}
@@ -50,7 +49,6 @@ namespace Shop.Repositories
 					EmailAddress = null,
 					Address = userRegistration.Address,
 					PhoneNumber = userRegistration.PhoneNumber,
-					Role = "User",
 					BankAccountNumber = userRegistration.BankAccountNumber
 				}; // returns the user with null email address
 			}
@@ -64,7 +62,6 @@ namespace Shop.Repositories
 					EmailAddress = userRegistration.EmailAddress,
 					Address = userRegistration.Address,
 					PhoneNumber = userRegistration.PhoneNumber,
-					Role = "User",
 					BankAccountNumber = null
 				}; // returns the user with null back account
 			}
@@ -77,7 +74,6 @@ namespace Shop.Repositories
 				EmailAddress = userRegistration.EmailAddress,
 				Address = userRegistration.Address,
 				PhoneNumber = userRegistration.PhoneNumber,
-				Role = "User",
 				BankAccountNumber = userRegistration.BankAccountNumber
 			};
 

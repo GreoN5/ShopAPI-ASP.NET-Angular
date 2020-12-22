@@ -27,7 +27,8 @@ export class LoginComponent implements OnInit {
     this.userService.login(loginForm.value).subscribe(
       (response: any) => {
         localStorage.setItem('loggedUser', loginForm.value.Username)
-        localStorage.setItem('token', response.token)
+        localStorage.setItem('token', response.authToken)
+        localStorage.setItem('role', response.user.role)
         this.router.navigateByUrl('/home')
         console.log(localStorage)
       }, error => {

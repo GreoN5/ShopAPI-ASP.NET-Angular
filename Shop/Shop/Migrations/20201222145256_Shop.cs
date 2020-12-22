@@ -7,6 +7,19 @@ namespace Shop.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Admins",
+                columns: table => new
+                {
+                    Username = table.Column<string>(type: "varchar(100)", nullable: false),
+                    Password = table.Column<string>(type: "varchar(50)", nullable: false),
+                    Role = table.Column<string>(type: "varchar(10)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Admins", x => x.Username);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Carts",
                 columns: table => new
                 {
@@ -25,7 +38,7 @@ namespace Shop.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "varchar(50)", nullable: true),
+                    Name = table.Column<string>(type: "varchar(50)", nullable: false),
                     Description = table.Column<string>(type: "varchar(500)", nullable: true),
                     Price = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
@@ -49,12 +62,12 @@ namespace Shop.Migrations
                 columns: table => new
                 {
                     Username = table.Column<string>(type: "varchar(100)", nullable: false),
-                    Password = table.Column<string>(type: "varchar(50)", nullable: true),
-                    EmailAddress = table.Column<string>(type: "varchar(250)", nullable: true),
+                    Password = table.Column<string>(type: "varchar(50)", nullable: false),
+                    EmailAddress = table.Column<string>(type: "varchar(250)", nullable: false),
                     Address = table.Column<string>(type: "varchar(500)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "varchar(10)", nullable: true),
-                    Role = table.Column<string>(type: "varchar(10)", nullable: true),
-                    BankAccountNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "varchar(10)", nullable: false),
+                    Role = table.Column<string>(type: "varchar(10)", nullable: false),
+                    BankAccountNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CartID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -106,6 +119,9 @@ namespace Shop.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Admins");
+
             migrationBuilder.DropTable(
                 name: "BankAccounts");
 
