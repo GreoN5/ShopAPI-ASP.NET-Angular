@@ -2,9 +2,9 @@
 using Microsoft.IdentityModel.Tokens;
 using Shop.Data;
 using Shop.Models.User;
+using Shop.Repositories.UserCheck;
 using Shop.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -12,12 +12,12 @@ using System.Text;
 
 namespace Shop.Repositories
 {
-	public class UserRepository
+	public class UserRepository : UniqueUser
 	{
 		private readonly IConfiguration _confirguration;
 		private readonly ShopContext _shopContext;
 
-		public UserRepository(IConfiguration configuration, ShopContext context)
+		public UserRepository(IConfiguration configuration, ShopContext context) : base()
 		{
 			_confirguration = configuration;
 			_shopContext = context;
@@ -25,74 +25,23 @@ namespace Shop.Repositories
 
 		public User Registration(UserRegistrationVM userRegistration)
 		{
-			List<User> users = _shopContext.Users.ToList();
-
-			if (CheckIfUsernameAlreadyExists(users, userRegistration.Username))
+			if (DoesUsernameAlreadyExists(userRegistration.Username, _shopContext))
 			{
-				return new User()
-				{
-					Username = null,
-					Password = userRegistration.Password,
-					EmailAddress = userRegistration.EmailAddress,
-					Address = userRegistration.Address,
-					PhoneNumber = userRegistration.PhoneNumber,
-					BankAccountNumber = userRegistration.BankAccountNumber
-				}; // returns the user with null username
+				return GetNewUserWithoutUsername(userRegistration);
 			}
 
-			if (CheckIfEmailAlreadyExists(users, userRegistration.EmailAddress))
+			if (DoesEmailAlreadyExists(userRegistration.EmailAddress, _shopContext))
 			{
-				return new User()
-				{
-					Username = userRegistration.Username,
-					Password = userRegistration.Password,
-					EmailAddress = null,
-					Address = userRegistration.Address,
-					PhoneNumber = userRegistration.PhoneNumber,
-					BankAccountNumber = userRegistration.BankAccountNumber
-				}; // returns the user with null email address
+				return GetNewUserWithoutEmail(userRegistration);
 			}
 
-			if (CheckIfBankAccountNumberAlreadyExists(users, userRegistration.BankAccountNumber))
+			if (DoesBankAccountNumberAlreadyExists(userRegistration.BankAccountNumber, _shopContext))
 			{
-				return new User()
-				{
-					Username = userRegistration.Username,
-					Password = userRegistration.Password,
-					EmailAddress = userRegistration.EmailAddress,
-					Address = userRegistration.Address,
-					PhoneNumber = userRegistration.PhoneNumber,
-					BankAccountNumber = null
-				}; // returns the user with null back account
+				return GetNewUserWithoutBankAccountNumber(userRegistration);
 			}
 
 			// if there are no matches for duplicated attributes of the user it will create a complete user and add it to the database 
-			User newUser = new User()
-			{
-				Username = userRegistration.Username,
-				Password = userRegistration.Password,
-				EmailAddress = userRegistration.EmailAddress,
-				Address = userRegistration.Address,
-				PhoneNumber = userRegistration.PhoneNumber,
-				BankAccountNumber = userRegistration.BankAccountNumber
-			};
-
-			_shopContext.BankAccounts.Add(new BankAccount() 
-			{
-				BankAccountNumber = newUser.BankAccountNumber,
-				BankAccountBalance = SetBankAccountBalance(),
-				User = newUser
-			});
-
-			_shopContext.Carts.Add(new Cart()
-			{
-				User = newUser
-			});
-
-			_shopContext.Users.Add(newUser);
-			_shopContext.SaveChanges();
-
-			return newUser;
+			return AddUniqueUser(userRegistration, _shopContext);
 		}
 
 		public User Login(UserLoginVM userLogin)
@@ -128,30 +77,39 @@ namespace Shop.Repositories
 			return new JwtSecurityTokenHandler().WriteToken(token);
 		}
 
-		/// <summary>
-		/// Simulates real-life bank account balance
-		/// </summary>
-		/// <returns>Random number between 100 and 5000 for the particular bank account number</returns>
-		private decimal SetBankAccountBalance()
+		protected override bool DoesUsernameAlreadyExists(string username, ShopContext context)
 		{
-			Random random = new Random();
-
-			return random.Next(100, 5000);
+			return base.DoesUsernameAlreadyExists(username, context);
 		}
 
-		private bool CheckIfUsernameAlreadyExists(List<User> users, string username) 
+		protected override bool DoesEmailAlreadyExists(string email, ShopContext context)
 		{
-			return users.Where(u => u.Role == "User").Any(u => u.Username == username);
+			return base.DoesEmailAlreadyExists(email, context);
 		}
 
-		private bool CheckIfEmailAlreadyExists(List<User> users, string email)
+		protected override bool DoesBankAccountNumberAlreadyExists(string bankAccountNumber, ShopContext context)
 		{
-			return users.Where(u => u.Role == "User").Any(u => u.EmailAddress == email);
+			return base.DoesBankAccountNumberAlreadyExists(bankAccountNumber, context);
 		}
 
-		private bool CheckIfBankAccountNumberAlreadyExists(List<User> users, string bankAccountNumber)
+		protected override User GetNewUserWithoutUsername(UserRegistrationVM user)
 		{
-			return users.Where(u => u.Role == "User").Any(u => u.BankAccountNumber == bankAccountNumber);
+			return base.GetNewUserWithoutUsername(user);
+		}
+
+		protected override User GetNewUserWithoutEmail(UserRegistrationVM user)
+		{
+			return base.GetNewUserWithoutEmail(user);
+		}
+
+		protected override User GetNewUserWithoutBankAccountNumber(UserRegistrationVM user)
+		{
+			return base.GetNewUserWithoutBankAccountNumber(user);
+		}
+
+		protected override User AddUniqueUser(UserRegistrationVM user, ShopContext context)
+		{
+			return base.AddUniqueUser(user, context);
 		}
 	}
 }

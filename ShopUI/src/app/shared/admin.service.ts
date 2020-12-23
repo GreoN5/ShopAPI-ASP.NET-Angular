@@ -24,6 +24,14 @@ export class AdminService {
     return this.http.post(this.ApiURL + '/Admin/CreateProduct', newProduct)
   }
 
+  addNewUser(newUser) {
+    return this.http.post(this.ApiURL + '/Admin/AddNewUser', newUser)
+  }
+
+  addNewAdmin(newAdmin) {
+    return this.http.post(this.ApiURL + '/Admin/AddNewAdmin', newAdmin)
+  }
+
   changeQuantityOfProduct(productName, newQuantity) {
     return this.http.put(this.ApiURL + '/Admin/ChangeQuantity/' + productName + newQuantity, productName, newQuantity)
   }

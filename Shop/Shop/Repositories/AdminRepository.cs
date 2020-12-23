@@ -1,18 +1,19 @@
 ﻿using Shop.Data;
+using Shop.Models.Admin;
 using Shop.Models.Products;
 using Shop.Models.User;
+using Shop.Repositories.UserCheck;
 using Shop.ViewModels;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Shop.Repositories
 {
-	public class AdminRepository
+	public class AdminRepository : UniqueUser
 	{
 		private readonly ShopContext _shopContext;
 
-		public AdminRepository(ShopContext context)
+		public AdminRepository(ShopContext context) : base()
 		{
 			_shopContext = context;
 		}
@@ -29,72 +30,46 @@ namespace Shop.Repositories
 
 		public User AddNewUser(UserRegistrationVM newUser)
 		{
-			if (DoesUsernameAlreadyExists(newUser.Username))
+			if (DoesUsernameAlreadyExists(newUser.Username, _shopContext))
 			{
-				return new User()
-				{
-					Username = null,
-					Password = newUser.Password,
-					EmailAddress = newUser.EmailAddress,
-					Address = newUser.Address,
-					PhoneNumber = newUser.PhoneNumber,
-					BankAccountNumber = newUser.BankAccountNumber
-				}; // returns the user with null username
+				return GetNewUserWithoutUsername(newUser);
 			}
 
-			if (DoesEmailAlreadyExists(newUser.EmailAddress))
+			if (DoesEmailAlreadyExists(newUser.EmailAddress, _shopContext))
 			{
-				return new User()
-				{
-					Username = newUser.Username,
-					Password = newUser.Password,
-					EmailAddress = null,
-					Address = newUser.Address,
-					PhoneNumber = newUser.PhoneNumber,
-					BankAccountNumber = newUser.BankAccountNumber
-				}; // returns the user with null email address
+				return GetNewUserWithoutEmail(newUser);
 			}
 
-			if (DoesBankAccountNumberAlreadyExists(newUser.BankAccountNumber))
+			if (DoesBankAccountNumberAlreadyExists(newUser.BankAccountNumber, _shopContext))
 			{
-				return new User()
-				{
-					Username = newUser.Username,
-					Password = newUser.Password,
-					EmailAddress = newUser.EmailAddress,
-					Address = newUser.Address,
-					PhoneNumber = newUser.PhoneNumber,
-					BankAccountNumber = null
-				}; // returns the user with null back account
+				return GetNewUserWithoutBankAccountNumber(newUser);
 			}
 
 			//if there are no matches for duplicated attributes of the user it will create a complete user and add it to the database
-		   User user = new User()
-		   {
-			   Username = newUser.Username,
-			   Password = newUser.Password,
-			   EmailAddress = newUser.EmailAddress,
-			   Address = newUser.Address,
-			   PhoneNumber = newUser.PhoneNumber,
-			   BankAccountNumber = newUser.BankAccountNumber
-		   };
+			return AddUniqueUser(newUser, _shopContext);
+		}
 
-			_shopContext.BankAccounts.Add(new BankAccount()
+		public Admin AddNewAdmin(AdminVM newAdmin)
+		{
+			if (DoesAdminUsernameAlreadyExists(newAdmin.Username))
 			{
-				BankAccountNumber = user.BankAccountNumber,
-				BankAccountBalance = SetBankAccountBalance(),
-				User = user
-			});
+				return new Admin()
+				{
+					Username = null,
+					Password = newAdmin.Password
+				};
+			}
 
-			_shopContext.Carts.Add(new Cart()
+			Admin admin = new Admin()
 			{
-				User = user
-			});
+				Username = newAdmin.Username,
+				Password = newAdmin.Password
+			};
 
-			_shopContext.Users.Add(user);
+			_shopContext.Admins.Add(admin);
 			_shopContext.SaveChanges();
 
-			return user;
+			return admin;
 		}
 
 		public bool CreateNewProduct(ProductVM product)
@@ -172,26 +147,44 @@ namespace Shop.Repositories
 			}
 		}
 
-		private decimal SetBankAccountBalance()
+		protected override bool DoesUsernameAlreadyExists(string username, ShopContext context)
 		{
-			Random random = new Random();
-
-			return random.Next(100, 5000);
+			return base.DoesUsernameAlreadyExists(username, context);
 		}
 
-		private bool DoesUsernameAlreadyExists(string username)
+		protected override bool DoesEmailAlreadyExists(string email, ShopContext context)
 		{
-			return _shopContext.Users.Any(u => u.Username == username);
+			return base.DoesEmailAlreadyExists(email, context);
 		}
 
-		private bool DoesEmailAlreadyExists(string email)
+		protected override bool DoesBankAccountNumberAlreadyExists(string bankAccountNumber, ShopContext context)
 		{
-			return _shopContext.Users.Any(u => u.EmailAddress == email);
+			return base.DoesBankAccountNumberAlreadyExists(bankAccountNumber, context);
 		}
 
-		private bool DoesBankAccountNumberAlreadyExists(string bankAccountNumber)
+		protected override User GetNewUserWithoutUsername(UserRegistrationVM user)
 		{
-			return _shopContext.Users.Any(u => u.BankAccountNumber == bankAccountNumber);
+			return base.GetNewUserWithoutUsername(user);
+		}
+
+		protected override User GetNewUserWithoutEmail(UserRegistrationVM user)
+		{
+			return base.GetNewUserWithoutEmail(user);
+		}
+
+		protected override User GetNewUserWithoutBankAccountNumber(UserRegistrationVM user)
+		{
+			return base.GetNewUserWithoutBankAccountNumber(user);
+		}
+
+		protected override User AddUniqueUser(UserRegistrationVM user, ShopContext context)
+		{
+			return base.AddUniqueUser(user, context);
+		}
+
+		private bool DoesAdminUsernameAlreadyExists(string adminUsername)
+		{
+			return _shopContext.Admins.Any(a => a.Username == adminUsername);
 		}
 
 		private bool DoesProductAlreadyExists(string productName)
