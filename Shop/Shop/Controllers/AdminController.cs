@@ -110,5 +110,17 @@ namespace Shop.Controllers
 
 			return NotFound("Product not found!");
 		}
+
+		[Route("RemoveUser/{username}")]
+		[HttpDelete]
+		public IActionResult RemoveUser(string username)
+		{
+			if (_adminRepository.RemoveUser(username))
+			{
+				return Ok($"User {username} successfully deleted!");
+			}
+
+			return NotFound("User not found!");
+		}
 	}
 }

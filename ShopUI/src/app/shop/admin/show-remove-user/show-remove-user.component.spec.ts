@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ShowUsersComponent } from './show-users.component';
+import { ShowRemoveUserComponent } from './show-remove-user.component';
 
-describe('ShowUsersComponent', () => {
-  let component: ShowUsersComponent;
-  let fixture: ComponentFixture<ShowUsersComponent>;
+describe('ShowRemoveUserComponent', () => {
+  let component: ShowRemoveUserComponent;
+  let fixture: ComponentFixture<ShowRemoveUserComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ShowUsersComponent ]
+      declarations: [ ShowRemoveUserComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ShowUsersComponent);
+    fixture = TestBed.createComponent(ShowRemoveUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

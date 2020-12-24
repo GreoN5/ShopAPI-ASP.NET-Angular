@@ -4,6 +4,7 @@ using Shop.Models.Products;
 using Shop.Models.User;
 using Shop.Repositories.UserCheck;
 using Shop.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -26,6 +27,11 @@ namespace Shop.Repositories
 		public List<Product> GetAllProducts()
 		{
 			return _shopContext.Products.ToList();
+		}
+
+		public List<Category> ShowAllProductCategories()
+		{
+			return Enum.GetValues(typeof(Category)).Cast<Category>().ToList();
 		}
 
 		public User AddNewUser(UserRegistrationVM newUser)
@@ -51,7 +57,7 @@ namespace Shop.Repositories
 
 		public Admin AddNewAdmin(AdminVM newAdmin)
 		{
-			if (DoesAdminUsernameAlreadyExists(newAdmin.Username))
+			if (DoesAdminUsernameAlreadyExists(newAdmin.Username) && DoesUsernameAlreadyExists(newAdmin.Username, _shopContext))
 			{
 				return new Admin()
 				{
@@ -131,6 +137,21 @@ namespace Shop.Repositories
 			return false;
 		}
 
+		public bool RemoveUser(string username)
+		{
+			User user = GetUser(username);
+
+			if (user != null)
+			{
+				_shopContext.Users.Remove(user);
+				_shopContext.SaveChanges();
+
+				return true;
+			}
+
+			return false;
+		}
+
 		private void SetProductStatus(Product product)
 		{
 			if (product.Quantity == 0)
@@ -145,6 +166,11 @@ namespace Shop.Repositories
 			{
 				product.Status = Status.Available;
 			}
+		}
+
+		private User GetUser(string username)
+		{
+			return _shopContext.Users.Find(username);
 		}
 
 		protected override bool DoesUsernameAlreadyExists(string username, ShopContext context)

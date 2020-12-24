@@ -16,6 +16,11 @@ import { AdminComponent } from './shop/admin/admin.component';
 import { ShowUsersComponent } from './shop/admin/show-users/show-users.component';
 import { ShowProductsComponent } from './shop/admin/show-products/show-products.component';
 import { CreateProductComponent } from './shop/admin/create-product/create-product.component';
+import { AddUserComponent } from './shop/admin/add-user/add-user.component';
+import { AddAdminComponent } from './shop/admin/add-admin/add-admin.component';
+import { ShowChangeRemoveProductComponent } from './shop/admin/show-change-remove-product/show-change-remove-product.component';
+import { ShowRemoveUserComponent } from './shop/admin/show-remove-user/show-remove-user.component';
+import { ShowChangeRemoveProductsComponent } from './shop/admin/show-change-remove-products/show-change-remove-products.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +35,12 @@ import { CreateProductComponent } from './shop/admin/create-product/create-produ
     AdminComponent,
     ShowUsersComponent,
     ShowProductsComponent,
-    CreateProductComponent
+    CreateProductComponent,
+    AddUserComponent,
+    AddAdminComponent,
+    ShowChangeRemoveProductComponent,
+    ShowRemoveUserComponent,
+    ShowChangeRemoveProductsComponent
   ],
   imports: [
     BrowserModule,

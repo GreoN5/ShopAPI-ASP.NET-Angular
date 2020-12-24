@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/shared/admin.service';
 
 @Component({
-  selector: 'app-create-product',
-  templateUrl: './create-product.component.html',
-  styleUrls: ['./create-product.component.css']
+  selector: 'app-add-admin',
+  templateUrl: './add-admin.component.html',
+  styleUrls: ['./add-admin.component.css']
 })
-export class CreateProductComponent implements OnInit {
+export class AddAdminComponent implements OnInit {
 
   constructor(private adminService: AdminService) { }
 
@@ -14,9 +14,9 @@ export class CreateProductComponent implements OnInit {
   }
 
   submit() {
-    this.adminService.createNewProduct().subscribe(
+    this.adminService.addNewAdmin().subscribe(
       response => {
-        this.adminService.createModelProduct.reset()
+        this.adminService.createModelAdmin.reset()
       }, error => {
         console.log(error)
       }
