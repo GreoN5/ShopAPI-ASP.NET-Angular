@@ -67,6 +67,10 @@ export class AdminService {
     return this.http.get(this.ApiURL + '/Admin/Products')
   }
 
+  getAllProductCategories(): any {
+    return this.http.get(this.ApiURL + '/Admin/ProductCategories')
+  }
+
   createNewProduct() {
     let newProduct = {
       Name: this.createModelProduct.value.Name,

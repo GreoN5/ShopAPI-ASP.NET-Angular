@@ -8,9 +8,10 @@ import { AdminService } from 'src/app/shared/admin.service';
 })
 export class AddUserComponent implements OnInit {
 
-  constructor(private adminService: AdminService) { }
+  constructor(public adminService: AdminService) { }
 
   ngOnInit(): void {
+    this.adminService.createModelUser.reset()
   }
 
   submit() {

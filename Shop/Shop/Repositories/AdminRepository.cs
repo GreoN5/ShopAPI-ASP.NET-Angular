@@ -19,12 +19,12 @@ namespace Shop.Repositories
 			_shopContext = context;
 		}
 
-		public List<User> GetAllUsers()
+		public List<User> ShowAllUsers()
 		{
 			return _shopContext.Users.ToList();
 		}
 
-		public List<Product> GetAllProducts()
+		public List<Product> ShowAllProducts()
 		{
 			return _shopContext.Products.ToList();
 		}

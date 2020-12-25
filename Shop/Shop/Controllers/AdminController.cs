@@ -4,10 +4,6 @@ using Shop.Models.Admin;
 using Shop.Models.User;
 using Shop.Repositories;
 using Shop.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Shop.Controllers
 {
@@ -27,14 +23,21 @@ namespace Shop.Controllers
 		[HttpGet]
 		public IActionResult GetAllRegisteredUsers()
 		{
-			return Ok(_adminRepository.GetAllUsers());
+			return Ok(_adminRepository.ShowAllUsers());
 		}
 
 		[Route("Products")]
 		[HttpGet]
 		public IActionResult GetAllProducts()
 		{
-			return Ok(_adminRepository.GetAllProducts());
+			return Ok(_adminRepository.ShowAllProducts());
+		}
+
+		[Route("ProductCategories")]
+		[HttpGet]
+		public IActionResult GetAllProductCategories()
+		{
+			return Ok(_adminRepository.ShowAllProductCategories());
 		}
 
 		[Route("CreateProduct")]

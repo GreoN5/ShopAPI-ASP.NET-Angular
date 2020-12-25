@@ -8,9 +8,21 @@ import { AdminService } from 'src/app/shared/admin.service';
 })
 export class CreateProductComponent implements OnInit {
 
-  constructor(private adminService: AdminService) { }
+  constructor(public adminService: AdminService) { }
 
   ngOnInit(): void {
+    this.getProductCategories()
+    this.adminService.createModelProduct.reset()
+  }
+
+  getProductCategories() {
+    this.adminService.getAllProductCategories().subscribe(
+      data => {
+        this.adminService.productCategories = data
+      }, error => {
+        console.log(error)
+      }
+    )
   }
 
   submit() {

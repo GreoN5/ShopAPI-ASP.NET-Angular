@@ -1,1 +1,46 @@
-<p>create-product works!</p>
+<div class="product-creation">
+    <div class="form-wrapper">
+        <form [formGroup]="adminService.createModelProduct" autocomplete="off" (ngSubmit)="submit()">
+            <label class="required"></label>
+            <label id="name-label">Name: </label>
+            <label *ngIf="adminService.createModelProduct.get('Name').touched &&
+                adminService.createModelProduct.get('Name').errors?.required">This field is required!</label>
+            <div class="text-box-center">
+                <input id="text-box" type="text" formControlName="Name" placeholder="Enter product name" />
+            </div>
+            <label id="description-label">Description: </label>
+            <div class="text-box-center">
+                <textarea id="product-description" formControlName="Description" 
+                placeholder="Type the description of the product here."></textarea>
+            </div>
+            <label id="product-price">Price: </label>
+            <label class="required"></label>
+            <label *ngIf="adminService.createModelProduct.get('Price').touched &&
+                adminService.createModelProduct.get('Price').errors?.required">This field is required!</label>
+            <div class="text-box-center">
+                <input id="text-box" type="number" formControlName="Price" placeholder="Enter product price" />
+            </div>
+            <label id="product-quantity">Quantity: </label>
+            <label class="required"></label>
+            <label *ngIf="adminService.createModelProduct.get('Quantity').touched &&
+                adminService.createModelProduct.get('Quantity').errors?.required">This field is required!</label>
+            <div class="text-box-center">
+                <input id="text-box" type="number" formControlName="Quantity" placeholder="Enter your phone number" />
+            </div>
+            <label id="product-category">Category: </label>
+            <label class="required"></label>
+            <label *ngIf="adminService.createModelProduct.get('Category').touched &&
+                adminService.createModelProduct.get('Category').errors?.required">This field is required!</label>
+            <div class="text-box-center">
+                <select id="dropdown-category" formControlName="Category" *ngFor="let category of adminService.productCategories">
+                    <option>{{category}}</option>
+                </select>
+            </div>
+            <div>
+                <button id="sign-up-button" type="submit" [disabled]="adminService.createModelProduct.invalid">Create product</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
