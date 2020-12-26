@@ -27,16 +27,22 @@ export class ShowChangeRemoveProductsComponent implements OnInit {
   changeQuantityOfProduct(productName: string, quantity) {
     this.adminService.changeQuantityOfProduct(productName, quantity).subscribe(
       data => {
+        for (let i = 0; i < this.adminService.allProducts.length; i++) {
+          if (this.adminService.allProducts[i].name === productName) {
+            this.adminService.allProducts[i].quantity = quantity
 
+            break;
+          }
+        }
       }
     )
   }
 
-  removeProduct(productName) {
+  deleteProduct(productName) {
     this.adminService.removeProduct(productName).subscribe(
       data => {
         for (let i = 0; i < this.adminService.allProducts.length; i++) {
-          if (this.adminService.allProducts[i].name == productName) {
+          if (this.adminService.allProducts[i].name === productName) {
             this.adminService.allProducts.splice(i, 1)
 
             break;

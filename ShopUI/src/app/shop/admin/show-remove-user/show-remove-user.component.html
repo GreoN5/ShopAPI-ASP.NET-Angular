@@ -1,1 +1,25 @@
-<p>show-remove-user works!</p>
+<header>
+    <h1>Users</h1>
+</header>
+
+<table>
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email address</th>
+            <th>Address</th>
+            <th>Phone number</th>
+            <th>Bank account number</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of adminService.registeredUsers">
+            <td>{{user.username}}</td>
+            <td>{{user.emailAddress}}</td>
+            <td>{{user.address}}</td>
+            <td>{{user.phoneNumber}}</td>
+            <td>{{user.bankAccountNumber}}</td>
+            <td (click)="deleteUser(user.username)">Delete</td>
+        </tr>
+    </tbody>
+</table>

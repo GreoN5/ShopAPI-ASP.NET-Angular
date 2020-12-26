@@ -11,6 +11,7 @@ export class ShowRemoveUserComponent implements OnInit {
   constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
+    this.showUsers()
   }
 
   showUsers() {
@@ -23,7 +24,7 @@ export class ShowRemoveUserComponent implements OnInit {
     )
   }
 
-  removeUser(username) {
+  deleteUser(username) {
     this.adminService.removeUser(username).subscribe(
       data => {
         for (let i = 0; i < this.adminService.registeredUsers.length; i++) {

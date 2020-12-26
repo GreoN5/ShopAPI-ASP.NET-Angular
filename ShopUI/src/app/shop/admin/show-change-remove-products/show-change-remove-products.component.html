@@ -1,1 +1,29 @@
+<header>
+    <h1>Products</h1>
+</header>
 
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Status</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of adminService.allProducts">
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.status}}</td>
+            <td>{{product.category}}</td>
+            <td (click)="deleteProduct(product.name)">Delete</td>
+        </tr>
+    </tbody>
+</table>
