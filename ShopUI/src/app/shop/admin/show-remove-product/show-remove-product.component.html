@@ -23,6 +23,7 @@
             <td>{{product.quantity}}</td>
             <td>{{product.status}}</td>
             <td>{{product.category}}</td>
+            <td (click)="editProduct(product.id)">Edit</td>
             <td (click)="deleteProduct(product.name)">Delete</td>
         </tr>
     </tbody>

@@ -13,14 +13,12 @@ import { HeaderComponent } from './shop/header/header.component';
 import { ProductsByCategoriesComponent } from './shop/products-by-categories/products-by-categories.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminComponent } from './shop/admin/admin.component';
-import { ShowUsersComponent } from './shop/admin/show-users/show-users.component';
-import { ShowProductsComponent } from './shop/admin/show-products/show-products.component';
 import { CreateProductComponent } from './shop/admin/create-product/create-product.component';
 import { AddUserComponent } from './shop/admin/add-user/add-user.component';
 import { AddAdminComponent } from './shop/admin/add-admin/add-admin.component';
-import { ShowChangeRemoveProductComponent } from './shop/admin/show-change-remove-product/show-change-remove-product.component';
 import { ShowRemoveUserComponent } from './shop/admin/show-remove-user/show-remove-user.component';
-import { ShowChangeRemoveProductsComponent } from './shop/admin/show-change-remove-products/show-change-remove-products.component';
+import { ShowRemoveProductComponent } from './shop/admin/show-remove-product/show-remove-product.component';
+import { EditProductComponent } from './shop/admin/edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -33,14 +31,12 @@ import { ShowChangeRemoveProductsComponent } from './shop/admin/show-change-remo
     HeaderComponent,
     ProductsByCategoriesComponent,
     AdminComponent,
-    ShowUsersComponent,
-    ShowProductsComponent,
     CreateProductComponent,
     AddUserComponent,
     AddAdminComponent,
-    ShowChangeRemoveProductComponent,
     ShowRemoveUserComponent,
-    ShowChangeRemoveProductsComponent
+    ShowRemoveProductComponent,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Models.Admin;
+using Shop.Models.Products;
 using Shop.Models.User;
 using Shop.Repositories;
 using Shop.ViewModels;
@@ -90,16 +91,18 @@ namespace Shop.Controllers
 			return Ok(admin);
 		}
 
-		[Route("ChangeQuantity/{productName}/{quantity}")]
+		[Route("EditProduct/{id}")]
 		[HttpPut]
-		public IActionResult ChangeQuantityOfProduct(string productName, int quantity)
+		public IActionResult EditProduct(int id, [FromBody] ProductVM editProduct)
 		{
-			if (_adminRepository.ChangeQuantityOfProduct(productName, quantity))
+			Product product = _adminRepository.EditProduct(id, editProduct);
+
+			if (product != null)
 			{
-				return Ok($"Quantity of {productName} changed to {quantity}!");
+				return Ok("Product successfully edited!");
 			}
 
-			return NotFound("Product not found!");
+			return BadRequest("Product could not be edited!");
 		}
 
 		[Route("RemoveProduct/{productName}")]

@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { AdminComponent } from './shop/admin/admin.component';
 import { CreateProductComponent } from './shop/admin/create-product/create-product.component';
-import { ShowChangeRemoveProductsComponent } from './shop/admin/show-change-remove-products/show-change-remove-products.component';
+import { EditProductComponent } from './shop/admin/edit-product/edit-product.component';
+import { ShowRemoveProductComponent } from './shop/admin/show-remove-product/show-remove-product.component';
 import { ShowRemoveUserComponent } from './shop/admin/show-remove-user/show-remove-user.component';
 import { ProductsByCategoriesComponent } from './shop/products-by-categories/products-by-categories.component';
 import { ShopComponent } from './shop/shop.component';
@@ -20,8 +21,9 @@ const routes: Routes = [
   { path: 'user/cart', component: CartComponent, canActivate: [AuthGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
   { path: 'admin/users', component: ShowRemoveUserComponent, canActivate: [AuthGuard] },
-  { path: 'admin/products', component: ShowChangeRemoveProductsComponent, canActivate: [AuthGuard] },
-  { path: 'admin/create-product', component: CreateProductComponent, canActivate: [AuthGuard] }
+  { path: 'admin/products', component: ShowRemoveProductComponent, canActivate: [AuthGuard] },
+  { path: 'admin/create-product', component: CreateProductComponent, canActivate: [AuthGuard] },
+  { path: 'admin/edit/:id', component: EditProductComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

@@ -105,8 +105,8 @@ export class AdminService {
     return this.http.post(this.ApiURL + '/Admin/AddNewAdmin', newAdmin)
   }
 
-  changeQuantityOfProduct(productName: string, newQuantity) {
-    return this.http.put(this.ApiURL + '/Admin/ChangeQuantity/' + productName + '/' + newQuantity, productName, newQuantity)
+  editProduct(productID) {
+    return this.http.put(this.ApiURL + '/Admin/EditProduct/' + productID, productID)
   }
 
   removeProduct(productName: string) {

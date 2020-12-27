@@ -102,24 +102,24 @@ namespace Shop.Repositories
 			return true;
 		}
 
-		public bool ChangeQuantityOfProduct(string productName, int quantity)
+		public Product EditProduct(int productID, ProductVM newProduct)
 		{
-			Product product = GetProductByProductName(productName);
+			Product product = GetProductByID(productID);
 
 			if (product != null)
 			{
-				if (quantity > 0)
-				{
-					product.Quantity = quantity;
-					SetProductStatus(product); // sets the new status because the quantity has been changed
+				product.Name = newProduct.Name;
+				product.Description = newProduct.Description;
+				product.Price = newProduct.Price;
+				product.Quantity = newProduct.Quantity;
 
-					_shopContext.SaveChanges();
+				SetProductStatus(product);
+				_shopContext.SaveChanges();
 
-					return true;
-				}
+				return product;
 			}
 
-			return false;
+			return null;
 		}
 
 		public bool RemoveProduct(string productName)
@@ -221,6 +221,11 @@ namespace Shop.Repositories
 		private Product GetProductByProductName(string productName)
 		{
 			return _shopContext.Products.Find(productName);
+		}
+
+		private Product GetProductByID(int productID)
+		{
+			return _shopContext.Products.Find(productID);
 		}
 	}
 }

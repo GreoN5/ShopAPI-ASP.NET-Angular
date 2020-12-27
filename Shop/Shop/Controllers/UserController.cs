@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Shop.Models.Admin;
 using Shop.Models.User;
 using Shop.Repositories;
 using Shop.ViewModels;
@@ -49,12 +50,20 @@ namespace Shop.Controllers
 		public IActionResult Login([FromBody] UserLoginVM userLogin)
 		{
 			User user = _userRepository.Login(userLogin);
+			Admin admin = _userRepository.LoginAdmin(userLogin);
 
 			if (user != null)
 			{
 				var token = _userRepository.GenerateJWTToken(user);
 
 				return Ok(new { AuthToken = token, User = user });
+			}
+
+			if (admin != null)
+			{
+				var token = _userRepository.GenerateJWTTokenAdmin(admin);
+
+				return Ok(new { AuthToken = token, Admin = admin });
 			}
 
 			return NotFound("User not found!");
