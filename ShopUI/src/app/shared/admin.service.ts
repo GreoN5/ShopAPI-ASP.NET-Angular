@@ -58,9 +58,14 @@ export class AdminService {
   registeredUsers = []
   allProducts = []
   productCategories = []
+  admins = []
 
   getAllRegisteredUsers(): any {
     return this.http.get(this.ApiURL + '/Admin/Users')
+  }
+
+  getAllAdmins(): any {
+    return this.http.get(this.ApiURL + '/Admin/Admins')
   }
 
   getAllProducts(): any {
@@ -115,5 +120,9 @@ export class AdminService {
 
   removeUser(username: string) {
     return this.http.delete(this.ApiURL + '/Admin/RemoveUser/' + username)
+  }
+
+  removeAdmin(username: string) {
+    return this.http.delete(this.ApiURL + '/Admin/RemoveAdmin/' + username)
   }
 }

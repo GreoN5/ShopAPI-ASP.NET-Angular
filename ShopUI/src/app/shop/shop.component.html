@@ -1,7 +1,9 @@
-<div *ngIf="userRole === null || userRole === 'User'">
+<div *ngIf="userRole === 'User' || userRole === null">
     <app-header></app-header>
     <router-outlet></router-outlet>
 </div>
+
 <div *ngIf="userRole === 'Admin'">
     <app-admin></app-admin>
+    <router-outlet></router-outlet>
 </div>

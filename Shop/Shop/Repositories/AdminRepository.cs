@@ -24,6 +24,11 @@ namespace Shop.Repositories
 			return _shopContext.Users.ToList();
 		}
 
+		public List<Admin> ShowAllAdmins()
+		{
+			return _shopContext.Admins.ToList();
+		}
+
 		public List<Product> ShowAllProducts()
 		{
 			return _shopContext.Products.ToList();
@@ -152,6 +157,21 @@ namespace Shop.Repositories
 			return false;
 		}
 
+		public bool RemoveAdmin(string username)
+		{
+			Admin admin = GetAdmin(username);
+
+			if (admin != null)
+			{
+				_shopContext.Admins.Remove(admin);
+				_shopContext.SaveChanges();
+
+				return true;
+			}
+
+			return false;
+		}
+
 		private void SetProductStatus(Product product)
 		{
 			if (product.Quantity == 0)
@@ -226,6 +246,11 @@ namespace Shop.Repositories
 		private Product GetProductByID(int productID)
 		{
 			return _shopContext.Products.Find(productID);
+		}
+
+		private Admin GetAdmin(string username)
+		{
+			return _shopContext.Admins.Find(username);
 		}
 	}
 }

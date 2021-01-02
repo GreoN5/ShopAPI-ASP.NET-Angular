@@ -28,9 +28,16 @@ export class LoginComponent implements OnInit {
       (response: any) => {
         localStorage.setItem('loggedUser', loginForm.value.Username)
         localStorage.setItem('token', response.authToken)
-        localStorage.setItem('role', response.user.role)
-        this.router.navigateByUrl('/home')
+        localStorage.setItem('role', response.role)
         console.log(localStorage)
+
+        console.log(response);
+        //if (response.role === 'Admin') {
+        // this.router.navigateByUrl('/admin')
+        // } else {
+        // this.router.navigateByUrl('/home')
+        //}
+
       }, error => {
         console.log(error)
       }

@@ -56,14 +56,14 @@ namespace Shop.Controllers
 			{
 				var token = _userRepository.GenerateJWTToken(user);
 
-				return Ok(new { AuthToken = token, User = user });
+				return Ok(new { AuthToken = token, User = user, Role = user.Role });
 			}
 
 			if (admin != null)
 			{
 				var token = _userRepository.GenerateJWTTokenAdmin(admin);
 
-				return Ok(new { AuthToken = token, Admin = admin });
+				return Ok(new { AuthToken = token, Admin = admin, Role = admin.Role });
 			}
 
 			return NotFound("User not found!");

@@ -1,0 +1,19 @@
+<header>
+    <h1>Admins</h1>
+</header>
+
+<table>
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Password</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let admin of adminService.admins">
+            <td>{{admin.username}}</td>
+            <td>{{admin.password}}</td>
+            <td (click)="deleteAdmin(admin.username)">Delete</td>
+        </tr>
+    </tbody>
+</table>

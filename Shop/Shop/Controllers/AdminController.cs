@@ -22,13 +22,23 @@ namespace Shop.Controllers
 
 		[Route("Users")]
 		[HttpGet]
+		//[Authorize(Roles = "Admin")]
 		public IActionResult GetAllRegisteredUsers()
 		{
 			return Ok(_adminRepository.ShowAllUsers());
 		}
 
+		[Route("Admins")]
+		[HttpGet]
+		//[Authorize(Roles = "Admin")]
+		public IActionResult GetAllAdmins()
+		{
+			return Ok(_adminRepository.ShowAllAdmins());
+		}
+
 		[Route("Products")]
 		[HttpGet]
+		//[Authorize(Roles = "Admin")]
 		public IActionResult GetAllProducts()
 		{
 			return Ok(_adminRepository.ShowAllProducts());
@@ -36,6 +46,7 @@ namespace Shop.Controllers
 
 		[Route("ProductCategories")]
 		[HttpGet]
+		//[Authorize(Roles = "Admin")]
 		public IActionResult GetAllProductCategories()
 		{
 			return Ok(_adminRepository.ShowAllProductCategories());
@@ -43,6 +54,7 @@ namespace Shop.Controllers
 
 		[Route("CreateProduct")]
 		[HttpPost]
+		//[Authorize(Roles = "Admin")]
 		public IActionResult CreateNewProduct([FromBody] ProductVM product)
 		{
 			if (_adminRepository.CreateNewProduct(product))
@@ -55,6 +67,7 @@ namespace Shop.Controllers
 
 		[Route("AddNewUser")]
 		[HttpPost]
+		//[Authorize(Roles = "Admin")]
 		public IActionResult AddNewUser([FromBody] UserRegistrationVM newUser)
 		{
 			User user = _adminRepository.AddNewUser(newUser);
@@ -79,6 +92,7 @@ namespace Shop.Controllers
 
 		[Route("AddNewAdmin")]
 		[HttpPost]
+		//[Authorize(Roles = "Admin")]
 		public IActionResult AddNewAdmin([FromBody] AdminVM newAdmin)
 		{
 			Admin admin = _adminRepository.AddNewAdmin(newAdmin);
@@ -93,6 +107,7 @@ namespace Shop.Controllers
 
 		[Route("EditProduct/{id}")]
 		[HttpPut]
+		//[Authorize(Roles = "Admin")]
 		public IActionResult EditProduct(int id, [FromBody] ProductVM editProduct)
 		{
 			Product product = _adminRepository.EditProduct(id, editProduct);
@@ -107,6 +122,7 @@ namespace Shop.Controllers
 
 		[Route("RemoveProduct/{productName}")]
 		[HttpDelete]
+		//[Authorize(Roles = "Admin")]
 		public IActionResult RemoveProduct(string productName)
 		{
 			if (_adminRepository.RemoveProduct(productName))
@@ -119,6 +135,7 @@ namespace Shop.Controllers
 
 		[Route("RemoveUser/{username}")]
 		[HttpDelete]
+		//[Authorize(Roles = "Admin")]
 		public IActionResult RemoveUser(string username)
 		{
 			if (_adminRepository.RemoveUser(username))
@@ -127,6 +144,19 @@ namespace Shop.Controllers
 			}
 
 			return NotFound("User not found!");
+		}
+
+		[Route("RemoveAdmin/{username}")]
+		[HttpDelete]
+		//[Authorize(Roles = "Admin")]
+		public IActionResult RemoveAdmin(string username)
+		{
+			if (_adminRepository.RemoveAdmin(username))
+			{
+				return Ok($"Admin {username} successfully deleted!");
+			}
+
+			return NotFound("Admin not found!");
 		}
 	}
 }

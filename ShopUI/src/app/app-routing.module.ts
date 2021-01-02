@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
+import { AddAdminComponent } from './shop/admin/add-admin/add-admin.component';
+import { AddUserComponent } from './shop/admin/add-user/add-user.component';
 import { AdminComponent } from './shop/admin/admin.component';
 import { CreateProductComponent } from './shop/admin/create-product/create-product.component';
 import { EditProductComponent } from './shop/admin/edit-product/edit-product.component';
+import { ShowRemoveAdminComponent } from './shop/admin/show-remove-admin/show-remove-admin.component';
 import { ShowRemoveProductComponent } from './shop/admin/show-remove-product/show-remove-product.component';
 import { ShowRemoveUserComponent } from './shop/admin/show-remove-user/show-remove-user.component';
 import { ProductsByCategoriesComponent } from './shop/products-by-categories/products-by-categories.component';
@@ -21,6 +24,9 @@ const routes: Routes = [
   { path: 'user/cart', component: CartComponent, canActivate: [AuthGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
   { path: 'admin/users', component: ShowRemoveUserComponent, canActivate: [AuthGuard] },
+  { path: 'admin/admins', component: ShowRemoveAdminComponent, canActivate: [AuthGuard] },
+  { path: 'admin/add-user', component: AddUserComponent, canActivate: [AuthGuard] },
+  { path: 'admin/add-admin', component: AddAdminComponent, canActivate: [AuthGuard] },
   { path: 'admin/products', component: ShowRemoveProductComponent, canActivate: [AuthGuard] },
   { path: 'admin/create-product', component: CreateProductComponent, canActivate: [AuthGuard] },
   { path: 'admin/edit/:id', component: EditProductComponent, canActivate: [AuthGuard] }
