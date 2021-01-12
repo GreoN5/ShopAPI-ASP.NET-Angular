@@ -27,7 +27,7 @@ export class ShopService {
     return this.http.get(this.ApiURL + '/Shop/Products/' + category)
   }
 
-  showCart() {
+  showCart(): any {
     return this.http.get(this.ApiURL + '/Shop/' + this.getLoggedUser() + '/Cart')
   }
 
