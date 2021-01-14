@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/shared/user.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-login-admin',
+  templateUrl: './login-admin.component.html',
+  styleUrls: ['./login-admin.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginAdminComponent implements OnInit {
 
   loginModel = {
     Username: '',
@@ -19,21 +19,21 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (localStorage.getItem('token') !== null) {
-      this.router.navigateByUrl('/home')
+      this.router.navigateByUrl('admin/home');
     }
   }
 
   submit(loginForm: NgForm) {
     this.userService.login(loginForm.value).subscribe(
       (response: any) => {
-        localStorage.setItem('loggedUser', loginForm.value.Username)
-        localStorage.setItem('token', response.authToken)
-        localStorage.setItem('role', response.role)
+        localStorage.setItem('token', response.authToken);
+        localStorage.setItem('role', response.role);
 
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('admin/home');
       }, error => {
-        console.log(error)
+        console.log(error);
       }
     )
   }
+
 }

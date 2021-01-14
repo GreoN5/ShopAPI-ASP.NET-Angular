@@ -21,6 +21,7 @@ import { ShowRemoveProductComponent } from './shop/admin/show-remove-product/sho
 import { EditProductComponent } from './shop/admin/edit-product/edit-product.component';
 import { NavBarComponent } from './shop/admin/nav-bar/nav-bar.component';
 import { ShowRemoveAdminComponent } from './shop/admin/show-remove-admin/show-remove-admin.component';
+import { LoginAdminComponent } from './shop/admin/login-admin/login-admin.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ShowRemoveAdminComponent } from './shop/admin/show-remove-admin/show-re
     ShowRemoveProductComponent,
     EditProductComponent,
     NavBarComponent,
-    ShowRemoveAdminComponent
+    ShowRemoveAdminComponent,
+    LoginAdminComponent
   ],
   imports: [
     BrowserModule,
