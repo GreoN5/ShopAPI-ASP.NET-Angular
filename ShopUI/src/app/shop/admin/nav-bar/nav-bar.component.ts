@@ -12,7 +12,6 @@ export class NavBarComponent implements OnInit {
   constructor(public adminService: AdminService, private router: Router) { }
 
   ngOnInit(): void {
-    //this.productCategories();
   }
 
   productCategories() {

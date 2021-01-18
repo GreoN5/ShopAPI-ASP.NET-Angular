@@ -1,0 +1,42 @@
+.login-admin-container {
+    display: flex;
+}
+
+.form-admin-wrapper {
+    margin: 10em auto auto auto;
+    width: 25%;
+}
+
+#username-admin-label {
+    font-size: 1.5em;
+    font-weight: 900;
+    margin-left: 6.4em;
+}
+
+#password-admin-label {
+    font-size: 1.5em;
+    font-weight: 900;
+    margin-left: 6.4em;
+}
+
+#login-admin-button {
+    font-size: 1.2em;
+    padding: 5px 10px 5px 10px;
+    margin-left: 65%;
+    border-radius: 10px;
+    font-weight: 700;
+    background-color: white;
+    color: black;
+    transition: 0.7s;
+}
+
+#login-admin-button:hover {
+    cursor: pointer;
+    transform: scale(1.15);
+}
+
+#login-admin-button:disabled {
+    cursor: default;
+    color: silver;
+    transform: scale(1);
+}

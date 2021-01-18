@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -61,19 +61,31 @@ export class AdminService {
   admins = []
 
   getAllRegisteredUsers(): any {
-    return this.http.get(this.ApiURL + '/Admin/Users')
+    return this.http.get(this.ApiURL + '/Admin/Users', {
+      headers: new HttpHeaders().set('Authorization',
+        `Bearer ${localStorage.getItem('token')}`).set('Content-Type', 'application/json')
+    });
   }
 
   getAllAdmins(): any {
-    return this.http.get(this.ApiURL + '/Admin/Admins')
+    return this.http.get(this.ApiURL + '/Admin/Admins', {
+      headers: new HttpHeaders().set('Authorization',
+        `Bearer ${localStorage.getItem('token')}`).set('Content-Type', 'application/json')
+    });
   }
 
   getAllProducts(): any {
-    return this.http.get(this.ApiURL + '/Admin/Products')
+    return this.http.get(this.ApiURL + '/Admin/Products', {
+      headers: new HttpHeaders().set('Authorization',
+        `Bearer ${localStorage.getItem('token')}`).set('Content-Type', 'application/json')
+    });
   }
 
   getAllProductCategories(): any {
-    return this.http.get(this.ApiURL + '/Admin/ProductCategories')
+    return this.http.get(this.ApiURL + '/Admin/ProductCategories', {
+      headers: new HttpHeaders().set('Authorization',
+        `Bearer ${localStorage.getItem('token')}`).set('Content-Type', 'application/json')
+    });
   }
 
   createNewProduct() {
@@ -85,7 +97,10 @@ export class AdminService {
       Category: this.createModelProduct.value.Category
     }
 
-    return this.http.post(this.ApiURL + '/Admin/CreateProduct', newProduct)
+    return this.http.post(this.ApiURL + '/Admin/CreateProduct', newProduct, {
+      headers: new HttpHeaders().set('Authorization',
+        `Bearer ${localStorage.getItem('token')}`).set('Content-Type', 'application/json')
+    });
   }
 
   addNewUser() {
@@ -98,7 +113,10 @@ export class AdminService {
       BankAccountNumber: this.createModelUser.value.BankAccountNumber
     }
 
-    return this.http.post(this.ApiURL + '/Admin/AddNewUser', newUser)
+    return this.http.post(this.ApiURL + '/Admin/AddNewUser', newUser, {
+      headers: new HttpHeaders().set('Authorization',
+        `Bearer ${localStorage.getItem('token')}`).set('Content-Type', 'application/json')
+    });
   }
 
   addNewAdmin() {
@@ -107,22 +125,37 @@ export class AdminService {
       Password: this.createModelAdmin.value.Password
     }
 
-    return this.http.post(this.ApiURL + '/Admin/AddNewAdmin', newAdmin)
+    return this.http.post(this.ApiURL + '/Admin/AddNewAdmin', newAdmin, {
+      headers: new HttpHeaders().set('Authorization',
+        `Bearer ${localStorage.getItem('token')}`).set('Content-Type', 'application/json')
+    });
   }
 
   editProduct(productID) {
-    return this.http.put(this.ApiURL + '/Admin/EditProduct/' + productID, productID)
+    return this.http.put(this.ApiURL + '/Admin/EditProduct/' + productID, productID, {
+      headers: new HttpHeaders().set('Authorization',
+        `Bearer ${localStorage.getItem('token')}`).set('Content-Type', 'application/json')
+    });
   }
 
   removeProduct(productName: string) {
-    return this.http.delete(this.ApiURL + '/Admin/RemoveProduct/' + productName)
+    return this.http.delete(this.ApiURL + '/Admin/RemoveProduct/' + productName, {
+      headers: new HttpHeaders().set('Authorization',
+        `Bearer ${localStorage.getItem('token')}`).set('Content-Type', 'application/json')
+    });
   }
 
   removeUser(username: string) {
-    return this.http.delete(this.ApiURL + '/Admin/RemoveUser/' + username)
+    return this.http.delete(this.ApiURL + '/Admin/RemoveUser/' + username, {
+      headers: new HttpHeaders().set('Authorization',
+        `Bearer ${localStorage.getItem('token')}`).set('Content-Type', 'application/json')
+    });
   }
 
   removeAdmin(username: string) {
-    return this.http.delete(this.ApiURL + '/Admin/RemoveAdmin/' + username)
+    return this.http.delete(this.ApiURL + '/Admin/RemoveAdmin/' + username, {
+      headers: new HttpHeaders().set('Authorization',
+        `Bearer ${localStorage.getItem('token')}`).set('Content-Type', 'application/json')
+    });
   }
 }

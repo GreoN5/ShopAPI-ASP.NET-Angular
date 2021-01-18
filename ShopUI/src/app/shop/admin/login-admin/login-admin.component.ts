@@ -19,7 +19,7 @@ export class LoginAdminComponent implements OnInit {
 
   ngOnInit(): void {
     if (localStorage.getItem('token') !== null) {
-      this.router.navigateByUrl('admin/home');
+      this.router.navigateByUrl('/admin/home');
     }
   }
 
@@ -29,7 +29,7 @@ export class LoginAdminComponent implements OnInit {
         localStorage.setItem('token', response.authToken);
         localStorage.setItem('role', response.role);
 
-        this.router.navigateByUrl('admin/home');
+        this.router.navigateByUrl('/admin/home');
       }, error => {
         console.log(error);
       }

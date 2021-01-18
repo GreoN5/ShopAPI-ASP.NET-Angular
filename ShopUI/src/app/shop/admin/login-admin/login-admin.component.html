@@ -1,18 +1,18 @@
-<div class="login-container">
-    <div class="form-wrapper">
+<div class="login-admin-container">
+    <div class="form-admin-wrapper">
         <form #loginForm="ngForm" autocomplete="off" (submit)="submit(loginForm)">
-            <label id="username-label">Username: </label>
+            <label id="username-admin-label">Username: </label>
             <div class="text-box-center">
-                <input #Username="ngModel" name="Username" [(ngModel)]="loginModel.Username" 
+                <input #Username="ngModel" name="Username" [ngModel]="loginModel.Username" 
                 id="text-box" placeholder="Enter username" required />
             </div>
-            <label id="password-label">Password: </label>
+            <label id="password-admin-label">Password: </label>
             <div class="text-box-center">
-                <input #Password="ngModel" type="password" name="Password" [(ngModel)]="loginModel.Password"
+                <input #Password="ngModel" type="password" name="Password" [ngModel]="loginModel.Password"
                 id="text-box" placeholder="Enter password" required />
             </div>
             <div>
-                <button id="login-button" type="submit" [disabled]="loginForm.invalid">Login</button>
+                <button id="login-admin-button" type="submit" [disabled]="loginForm.invalid">Login</button>
             </div>
         </form>
     </div>
