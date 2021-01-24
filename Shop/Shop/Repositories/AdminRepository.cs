@@ -107,6 +107,11 @@ namespace Shop.Repositories
 			return true;
 		}
 
+		public Product GetProduct(int productID)
+		{
+			return GetProductByID(productID);
+		}
+
 		public Product EditProduct(int productID, ProductVM newProduct)
 		{
 			Product product = GetProductByID(productID);

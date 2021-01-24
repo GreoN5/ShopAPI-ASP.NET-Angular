@@ -98,6 +98,20 @@ namespace Shop.Controllers
 			return Ok(admin);
 		}
 
+		[Route("GetProduct/{id}")]
+		[HttpGet]
+		public IActionResult GetProduct(int id)
+		{
+			Product product = _adminRepository.GetProduct(id);
+
+			if (product != null)
+			{
+				return Ok(product);
+			}
+
+			return NotFound("Product not found!");
+		}
+
 		[Route("EditProduct/{id}")]
 		[HttpPut]
 		public IActionResult EditProduct(int id, [FromBody] ProductVM editProduct)
