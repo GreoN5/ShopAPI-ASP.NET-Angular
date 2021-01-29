@@ -114,7 +114,7 @@ namespace Shop.Controllers
 
 		[Route("EditProduct/{id}")]
 		[HttpPut]
-		public IActionResult EditProduct(int id, [FromBody] ProductVM editProduct)
+		public IActionResult EditProduct(int id, ProductVM editProduct)
 		{
 			Product product = _adminRepository.EditProduct(id, editProduct);
 

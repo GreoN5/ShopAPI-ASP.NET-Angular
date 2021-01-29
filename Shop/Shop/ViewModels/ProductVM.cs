@@ -5,7 +5,7 @@ namespace Shop.ViewModels
 {
 	public class ProductVM
 	{
-		public int ID { get; set; }
+		//public int ID { get; set; }
 
 		[Required(ErrorMessage = "Product name is required!")]
 		public string Name { get; set; }

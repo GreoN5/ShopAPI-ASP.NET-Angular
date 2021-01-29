@@ -21,37 +21,22 @@ export class EditProductComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.products()
-
     this.router.paramMap.subscribe(paramMap => {
-      this.productID = paramMap.get('id')
-      this.getProduct(this.productID)
+      this.productID = paramMap.get('id');
     });
 
-    let product = JSON.parse(localStorage.getItem('productEdit'));
-    this.productEdit.patchValue({
-      Name: product.name,
-      Description: product.description,
-      Price: product.price,
-      Quantity: product.quantity
-    });
+    this.fillFormWithProduct(this.productID);
   }
 
-  getProduct(id) {
+  fillFormWithProduct(id) {
     this.adminService.getProduct(id).subscribe(
       product => {
-        this.adminService.editedProduct = product;
-        localStorage.setItem('productEdit', JSON.stringify(this.adminService.editedProduct));
-      }, error => {
-        console.log(error);
-      }
-    )
-  }
-
-  products() {
-    this.adminService.getAllProducts().subscribe(
-      data => {
-        this.adminService.allProducts = data;
+        this.productEdit.patchValue({
+          Name: product.name,
+          Description: product.description,
+          Price: product.price,
+          Quantity: product.quantity
+        });
       }, error => {
         console.log(error);
       }
@@ -59,30 +44,20 @@ export class EditProductComponent implements OnInit {
   }
 
   submitChanges(id) {
-    this.adminService.editProduct(id).subscribe(
-      response => {
+    let editedProduct = {
+      name: this.productEdit.value.Name,
+      description: this.productEdit.value.Description,
+      price: this.productEdit.value.Price,
+      quantity: this.productEdit.value.Quantity
+    }
+
+    this.adminService.editProduct(id, editedProduct).subscribe(
+      (response: any) => {
         this.routerTo.navigateByUrl('/admin/products');
-        console.log(id);
       }, error => {
         console.log(error);
       }
     )
-
-    //let product = this.adminService.allProducts.find(x => x.id == this.productID);
-    //for (let i = 0; i < this.adminService.allProducts.length; i++) {
-    //if (this.adminService.allProducts[i].id === this.productID) {
-    //this.adminService.allProducts.splice(i, 1);
-    //break;
-    //}
-    //}
-
-    //product.id = this.productID;
-    //product.name = this.productEdit.value.Name;
-    //product.description = this.productEdit.value.Description;
-    //product.price = this.productEdit.value.Price;
-    //product.quantity = this.productEdit.value.Quantity;
-
-    //this.adminService.allProducts.push(product);
   }
 
 }

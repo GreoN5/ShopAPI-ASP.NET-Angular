@@ -59,7 +59,7 @@ export class AdminService {
   allProducts = []
   productCategories = []
   admins = []
-  editedProduct = []
+  editedProduct: any;
 
   getAllRegisteredUsers(): any {
     return this.http.get(this.ApiURL + '/Admin/Users', {
@@ -139,8 +139,8 @@ export class AdminService {
     });
   }
 
-  editProduct(productID) {
-    return this.http.put(this.ApiURL + '/Admin/EditProduct/' + productID, productID, {
+  editProduct(productID, product) {
+    return this.http.put(this.ApiURL + '/Admin/EditProduct/' + productID, product, {
       headers: new HttpHeaders().set('Authorization',
         `Bearer ${localStorage.getItem('token')}`).set('Content-Type', 'application/json')
     });

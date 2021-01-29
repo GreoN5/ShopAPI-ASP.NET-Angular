@@ -66,6 +66,7 @@ namespace Shop
 			{
 				options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
 				options.SerializerSettings.Converters.Add(new StringEnumConverter());
+				options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
 			});
 
 			services.AddDbContext<ShopContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

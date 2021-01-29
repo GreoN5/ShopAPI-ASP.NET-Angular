@@ -92,7 +92,7 @@ namespace Shop.Repositories
 
 			Product newProduct = new Product()
 			{
-				ID = product.ID,
+				//ID = product.ID,
 				Name = product.Name,
 				Description = product.Description,
 				Price = product.Price,

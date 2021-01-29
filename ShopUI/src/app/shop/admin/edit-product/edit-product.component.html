@@ -18,14 +18,14 @@
             <label *ngIf="productEdit.get('Price').touched &&
                 productEdit.get('Price').errors?.required">This field is required!</label>
             <div class="text-box-center">
-                <input id="text-box" type="number" formControlName="Price" placeholder="Enter product price" />
+                <input id="text-box" type="text" formControlName="Price" placeholder="Enter product price" />
             </div>
             <label id="product-quantity">Quantity: </label>
             <label class="required"></label>
             <label *ngIf="productEdit.get('Quantity').touched &&
                 productEdit.get('Quantity').errors?.required">This field is required!</label>
             <div class="text-box-center">
-                <input id="text-box" type="number" formControlName="Quantity" placeholder="Enter your phone number" />
+                <input id="text-box" type="text" formControlName="Quantity" placeholder="Enter your phone number" />
             </div>
             <div>
                 <button id="submit-edit" type="submit" [disabled]="productEdit.invalid">Apply changes</button>
